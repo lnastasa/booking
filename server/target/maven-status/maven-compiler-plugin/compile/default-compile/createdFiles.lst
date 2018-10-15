@@ -1,0 +1,4 @@
+org\lucia\Application.class
+org\lucia\dao\HealthDao.class
+org\lucia\service\HealthService.class
+org\lucia\api\HealthResource.class
