@@ -1,9 +1,11 @@
-org\lucia\model\users\SuperUser.class
 org\lucia\model\health\HealthReport.class
-org\lucia\api\users\SuperUserResource.class
 org\lucia\service\health\HealthService.class
-org\lucia\dao\users\SuperUserDao.class
-org\lucia\service\users\SuperUserService.class
+org\lucia\service\users\AdministratorService.class
 org\lucia\dao\health\HealthDao.class
+org\lucia\dao\users\AdministratorDao.class
 org\lucia\api\health\HealthResource.class
 org\lucia\Application.class
+org\lucia\model\users\Administrator.class
+org\lucia\api\users\AdministratorResource.class
+org\lucia\model\users\Type.class
+org\lucia\model\users\User.class
