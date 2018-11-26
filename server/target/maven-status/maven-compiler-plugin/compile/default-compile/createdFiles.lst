@@ -1,9 +1,10 @@
-org\lucia\model\health\HealthReport.class
 org\lucia\service\health\HealthService.class
+org\lucia\api\health\HealthResource.class
+org\lucia\service\encryption\EncryptionService.class
+org\lucia\model\health\HealthReport.class
 org\lucia\service\users\AdministratorService.class
 org\lucia\dao\health\HealthDao.class
 org\lucia\dao\users\AdministratorDao.class
-org\lucia\api\health\HealthResource.class
 org\lucia\Application.class
 org\lucia\model\users\Administrator.class
 org\lucia\api\users\AdministratorResource.class

@@ -1,6 +1,18 @@
 package org.lucia.model.users;
 
-public abstract class User {
+public class User {
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", type=" + type +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", passwordHash='" + passwordHash + '\'' +
+                ", salt='" + salt + '\'' +
+                '}';
+    }
 
     public Type getType() {
         return type;
@@ -71,4 +83,9 @@ public abstract class User {
     protected String passwordHash;
 
     protected String salt;
+
+    public void removeSensitiveData() {
+        this.setPasswordHash(null);
+        this.setSalt(null);
+    }
 }

@@ -2,5 +2,5 @@ package org.lucia.model.users;
 
 public enum  Type {
 
-    ADMINISTRATOR;
+    ADMINISTRATOR, TEACHER, PARENT
 }

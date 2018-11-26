@@ -1,5 +1,6 @@
 C:\workspace\booking\server\src\main\java\org\lucia\api\health\HealthResource.java
 C:\workspace\booking\server\src\main\java\org\lucia\model\health\HealthReport.java
+C:\workspace\booking\server\src\main\java\org\lucia\service\encryption\EncryptionService.java
 C:\workspace\booking\server\src\main\java\org\lucia\service\users\AdministratorService.java
 C:\workspace\booking\server\src\main\java\org\lucia\model\users\User.java
 C:\workspace\booking\server\src\main\java\org\lucia\dao\health\HealthDao.java
