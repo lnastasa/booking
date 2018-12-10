@@ -39,13 +39,15 @@ export default class Login extends Component {
                     password: this.state.password
                 })
                 .then(response => {
-                    alert(response.status);
                     var user = response.data;
+                    this.setState({user: user});
                     if (user.type === 'ADMINISTRATOR') {
-                        this.props.history.push('/admin')
+                        this.props.history.push({
+                           pathname:'/admin',
+                           state : { user: user }
+                        })
                     }
                 }).catch(error => {
-                    alert(error);
                     this.setState({loginFailed: true});
                 });
         }
