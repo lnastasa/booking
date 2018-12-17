@@ -1,12 +1,14 @@
 package org.lucia.model.users;
 
 public class User {
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", type=" + type +
                 ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", passwordHash='" + passwordHash + '\'' +
@@ -75,6 +77,16 @@ public class User {
     protected Type type;
 
     protected String email;
+
+    protected String phoneNumber;
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     protected String firstName;
 

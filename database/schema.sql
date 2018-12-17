@@ -11,11 +11,12 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
 	id BIGINT NOT NULL AUTO_INCREMENT,
-    type VARCHAR(20),
-    email VARCHAR(100) UNIQUE,
-    firstname VARCHAR(100),
-    lastname VARCHAR(100),
-    password_hash VARCHAR(100),
-    salt VARCHAR(3),
+    type VARCHAR(20) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    phoneNumber VARCHAR(100) NOT NULL UNIQUE,
+    firstname VARCHAR(100) NOT NULL,
+    lastname VARCHAR(100) NOT NULL,
+    password_hash VARCHAR(100) NOT NULL,
+    salt VARCHAR(3) NOT NULL,
     PRIMARY KEY (id)
 ) AUTO_INCREMENT = 35000; 

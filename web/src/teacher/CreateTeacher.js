@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Navigation } from 'react-router'
-import {Link} from 'react-router-dom';
+import axios from 'axios'
 
 export default class CreateTeacher extends Component {
 
@@ -17,12 +17,17 @@ export default class CreateTeacher extends Component {
         // Inputs
         this.state = {firstName: ''};
         this.state = {lastName: ''};
+        this.state = {phoneNumber: ''};
         this.state = {email: ''};
 
         // Error flags
-        this.state = {firstNameEmpty: false};
-        this.state = {lastNameEmpty: false};
-        this.state = {emailEmpty: false};
+        this.state = {
+            firstNameEmpty: false,
+            lastNameEmpty: false,
+            phoneNumber: false,
+            emailEmpty: false,
+            createFailed: false
+        };
     }
 
     handleSubmit(event) {
@@ -40,11 +45,43 @@ export default class CreateTeacher extends Component {
                this.setState({lastNameEmpty: false});
           }
 
+      if (this.state.phoneNumber === undefined) {
+            this.setState({phoneNumberEmpty: true});
+        } else {
+             this.setState({phoneNumberEmpty: false});
+        }
+
       if (this.state.email === undefined) {
             this.setState({emailEmpty: true});
         } else {
              this.setState({emailEmpty: false});
         }
+
+      if (this.state.firstName !== undefined
+            && this.state.lastName !== undefined
+            && this.state.phoneNumber !== undefined
+            && this.state.email !== undefined) {
+
+        axios.post('http://localhost:8080/users',
+            {
+                type: 'TEACHER',
+                email: this.state.email,
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                phoneNumber: this.state.phoneNumber
+            })
+            .then(response => {
+               this.props.history.push({
+                  pathname:'/admin',
+                  state : {
+                    user: this.props.location.state.user,
+                    message: 'Teacher created successfully'
+                  }
+               })
+            }).catch(error => {
+                this.setState({createFailed: true});
+            });
+      }
    }
 
     handleInputChange(event) {
@@ -52,8 +89,6 @@ export default class CreateTeacher extends Component {
           [event.target.name]: event.target.value
         });
       }
-
-
 
     render() {
         return (
@@ -68,8 +103,16 @@ export default class CreateTeacher extends Component {
                     ? <div>Last Name must not be empty</div>
                     : null
                 }
+                {this.state.phoneNumberEmpty
+                    ? <div>Phone Number must not be empty</div>
+                    : null
+                }
                 {this.state.emailEmpty
                     ? <div>Email must not be empty</div>
+                    : null
+                }
+                {this.state.createFailed
+                    ? <div>Unable to create teacher</div>
                     : null
                 }
 
@@ -82,6 +125,9 @@ export default class CreateTeacher extends Component {
                     </label>
                     <label>Email:
                         <input type="text" name="email" onChange={this.handleInputChange} />
+                    </label>
+                    <label>Phone Number:
+                        <input type="text" name="phoneNumber" onChange={this.handleInputChange} />
                     </label>
                   <input type="submit" value="Create"  />
                 </form>

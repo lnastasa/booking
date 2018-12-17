@@ -8,12 +8,19 @@ export default class AdministratorHome extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {user: this.props.location.state.user};
+        this.state = {
+            user: this.props.location.state.user,
+            message: this.props.location.state.message
+        };
     }
 
     render() {
         return (
             <div>
+                {this.state.message !== undefined
+                    ? <div>{this.state.message}</div>
+                    : null
+                }
                 <div>Admin home, {this.state.user.firstName}</div>
                 <Link to={{
                        pathname:'/createTeacher',

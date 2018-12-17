@@ -8,11 +8,17 @@ export default class Login extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {email: ''};
-        this.state = {password: ''};
-        this.state = {loginFailed: false};
-        this.state = {emailEmpty: false};
-        this.state = {passwordEmpty: false};
+        this.state = {
+            message: this.props.location.state.message,
+
+            email: '',
+            password: '',
+
+            loginFailed: false,
+            emailEmpty: false,
+            passwordEmpty: false
+        };
+
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
     }
@@ -47,6 +53,12 @@ export default class Login extends Component {
                            state : { user: user }
                         })
                     }
+                    if (user.type === 'TEACHER') {
+                        this.props.history.push({
+                           pathname:'/teacher',
+                           state : { user: user }
+                        })
+                    }
                 }).catch(error => {
                     this.setState({loginFailed: true});
                 });
@@ -62,6 +74,10 @@ export default class Login extends Component {
     render() {
         return (
             <div>
+                {this.state.message !== undefined
+                    ? <div>{this.state.message}</div>
+                    : null
+                }
                 {this.state.loginFailed
                     ? <div>Email or Password is incorrect</div>
                     : null

@@ -1,6 +1,8 @@
 package org.lucia.service.users;
 
 import org.lucia.dao.users.UserDao;
+import org.lucia.gateway.SmsGateway;
+import org.lucia.model.users.RegistrationUpdate;
 import org.lucia.model.users.User;
 import org.lucia.service.encryption.EncryptionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +15,22 @@ public class UserService {
     private UserDao userDao;
 
     @Autowired
+    private SmsGateway smsGateway;
+
+    @Autowired
     private EncryptionService encryptionService;
 
     public User create(User user) {
+
+        if (user.getPasswordHash() == null && user.getSalt() == null) {
+            user.setPasswordHash(encryptionService.getSalt());
+            user.setSalt(encryptionService.getSalt());
+        }
+
         if (user.getType() == null
             || user.getFirstName() == null
             || user.getLastName() == null
-            || user.getPasswordHash() == null
+            || user.getPhoneNumber() == null
             || user.getEmail() == null) {
             throw new IllegalArgumentException("Create user request missing required field : " + user.toString());
         }
@@ -27,7 +38,17 @@ public class UserService {
         encryptPassword(user);
         User createdUser = userDao.create(user);
         createdUser.removeSensitiveData();
+
+        smsGateway.sendSms(user.getPhoneNumber(), "An account as been created for you in the PMDC system, please go to http://127.0.0.198:3000/register to complete registration");
+
         return createdUser;
+    }
+
+    public void completeRegistration(RegistrationUpdate registrationUpdate) {
+        User user = userDao.readByPhoneNumber(registrationUpdate.getPhoneNumber());
+        user.setPasswordHash(registrationUpdate.getPassword());
+        encryptPassword(user);
+        userDao.update(user);
     }
 
     private void encryptPassword(User user) {
