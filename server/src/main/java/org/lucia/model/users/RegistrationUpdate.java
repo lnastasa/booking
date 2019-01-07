@@ -2,17 +2,10 @@ package org.lucia.model.users;
 
 public class RegistrationUpdate {
 
-    private String phoneNumber;
+    private int userId;
 
     private String password;
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
 
     public String getPassword() {
         return password;
@@ -22,10 +15,18 @@ public class RegistrationUpdate {
         this.password = password;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         return "RegistrationUpdate{" +
-                "phoneNumber='" + phoneNumber + '\'' +
+                "userId=" + userId +
                 ", password='" + password + '\'' +
                 '}';
     }

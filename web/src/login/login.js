@@ -8,15 +8,16 @@ export default class Login extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            message: this.props.location.state.message,
 
+        this.state = {
             email: '',
             password: '',
 
             loginFailed: false,
             emailEmpty: false,
-            passwordEmpty: false
+            passwordEmpty: false,
+
+            message : this.props.location.state !== undefined && this.props.location.state.message !== undefined ? this.props.location.state.message : undefined
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -56,6 +57,12 @@ export default class Login extends Component {
                     if (user.type === 'TEACHER') {
                         this.props.history.push({
                            pathname:'/teacher',
+                           state : { user: user }
+                        })
+                    }
+                    if (user.type === 'PARENT') {
+                        this.props.history.push({
+                           pathname:'/parent',
                            state : { user: user }
                         })
                     }

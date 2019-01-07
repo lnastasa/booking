@@ -3,10 +3,13 @@ package org.lucia.service.users;
 import org.lucia.dao.users.UserDao;
 import org.lucia.gateway.SmsGateway;
 import org.lucia.model.users.RegistrationUpdate;
+import org.lucia.model.users.Type;
 import org.lucia.model.users.User;
 import org.lucia.service.encryption.EncryptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -39,13 +42,13 @@ public class UserService {
         User createdUser = userDao.create(user);
         createdUser.removeSensitiveData();
 
-        smsGateway.sendSms(user.getPhoneNumber(), "An account as been created for you in the PMDC system, please go to http://127.0.0.198:3000/register to complete registration");
+        smsGateway.sendSms(user.getPhoneNumber(), "An account as been created for you in the PMDC system, please go to http://127.0.0.198:3000/register/"+ user.getId() +" to complete registration");
 
         return createdUser;
     }
 
     public void completeRegistration(RegistrationUpdate registrationUpdate) {
-        User user = userDao.readByPhoneNumber(registrationUpdate.getPhoneNumber());
+        User user = userDao.readById(registrationUpdate.getUserId());
         user.setPasswordHash(registrationUpdate.getPassword());
         encryptPassword(user);
         userDao.update(user);
@@ -57,5 +60,13 @@ public class UserService {
         String encryptedPassword = encryptionService.encrypt(plainTextPassword, salt);
         user.setPasswordHash(encryptedPassword);
         user.setSalt(salt);
+    }
+
+    public List<User> readByType(Type type) {
+        List<User> users = userDao.readByType(type);
+        for (User user : users) {
+            user.removeSensitiveData();
+        }
+        return users;
     }
 }

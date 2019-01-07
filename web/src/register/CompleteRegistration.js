@@ -9,16 +9,16 @@ export default class CompleteRegistration extends Component {
      constructor(props) {
         super(props);
 
-        this.state = {phoneNumber: ''};
-        this.state = {password: ''};
-        this.state = {passwordConfirm: ''};
-
         this.state = {
-            phoneNumberEmpty: false,
+            password: '',
+            passwordConfirm: '',
+
             passwordEmpty: false,
             passwordConfirmEmpty: false,
             passwordMismatch: false,
-            registerFailed: false
+            registerFailed: false,
+
+            userId : this.props.match.params.id
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,12 +33,6 @@ export default class CompleteRegistration extends Component {
 
     handleSubmit(event) {
          event.preventDefault();
-
-         if (this.state.phoneNumber === undefined) {
-            this.setState({phoneNumberEmpty: true});
-        } else {
-             this.setState({phoneNumberEmpty: false});
-        }
 
          if (this.state.password === undefined) {
             this.setState({passwordEmpty: true});
@@ -58,13 +52,12 @@ export default class CompleteRegistration extends Component {
             this.setState({passwordMismatch: false});
         }
 
-        if (this.state.phoneNumber !== undefined
-            && this.state.password !== undefined
+        if (this.state.password !== undefined
             && this.state.password === this.state.passwordConfirm) {
 
             axios.put('http://localhost:8080/users/register',
                 {
-                    phoneNumber: this.state.phoneNumber,
+                    userId: this.state.userId,
                     password: this.state.password
                 })
                 .then(response => {
@@ -84,10 +77,6 @@ export default class CompleteRegistration extends Component {
         return (
             <div>
                 <div> Complete Registration</div>
-                {this.state.phoneNumberEmpty
-                    ? <div>Phone Number must not be empty</div>
-                    : null
-                }
                 {this.state.passwordEmpty
                     ? <div>Password must not be empty</div>
                     : null
@@ -106,9 +95,6 @@ export default class CompleteRegistration extends Component {
                 }
 
                 <form onSubmit={this.handleSubmit}>
-                    <label>Enter phone number your registration message was sent to:
-                        <input type="text" name="phoneNumber" onChange={this.handleInputChange} />
-                    </label>
                     <label>Password:
                         <input type="password" name="password" onChange={this.handleInputChange} />
                     </label>

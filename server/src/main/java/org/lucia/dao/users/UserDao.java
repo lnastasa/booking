@@ -1,5 +1,6 @@
 package org.lucia.dao.users;
 
+import org.lucia.model.users.Type;
 import org.lucia.model.users.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.sql.Types;
+import java.util.List;
 
 @Repository
 public class UserDao {
@@ -64,9 +66,14 @@ public class UserDao {
                 new BeanPropertyRowMapper<>(User.class));
     }
 
-    public User readByPhoneNumber(String phoneNumber) {
-        return jdbc.queryForObject("SELECT * FROM users WHERE phoneNumber = ?",
-                new Object[]{phoneNumber},
+    public User readById(int userId) {
+        return jdbc.queryForObject("SELECT * FROM users WHERE id = ?",
+                new Object[]{userId},
                 new BeanPropertyRowMapper<>(User.class));
+    }
+
+    public List<User> readByType(Type type) {
+        String sql = String.format("SELECT * FROM users WHERE type = '%s';", type.toString());
+        return jdbc.query(sql, new BeanPropertyRowMapper<>(User.class));
     }
 }

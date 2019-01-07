@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Navigation } from 'react-router'
 import {Link} from 'react-router-dom';
+import Users from '../user/Users';
 
 export default class AdministratorHome extends Component {
 
@@ -26,6 +27,15 @@ export default class AdministratorHome extends Component {
                        pathname:'/createTeacher',
                        state : { user: this.state.user }
                     }}>Create Teacher </Link>
+                <Link to={{
+                       pathname:'/createParent',
+                       state : { user: this.state.user }
+                    }}>Create Parent </Link>
+
+                <div>
+                    Teachers
+                    <Users type='TEACHER' />
+                </div>
             </div>
         )
     }
