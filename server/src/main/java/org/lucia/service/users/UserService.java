@@ -69,4 +69,10 @@ public class UserService {
         }
         return users;
     }
+
+    public User readById(long id) {
+        User user = userDao.readById(id);
+        user.removeSensitiveData();
+        return user;
+    }
 }

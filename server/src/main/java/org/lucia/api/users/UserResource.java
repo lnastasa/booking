@@ -39,4 +39,11 @@ public class UserResource {
     public List<User> readByType(@PathVariable("type") Type type) {
         return userService.readByType(type);
     }
+
+    @RequestMapping(value = "/users/{type}/{id}", method = GET)
+    @ResponseStatus(value = OK)
+    @ResponseBody
+    public User readById(@PathVariable("type") Type type, @PathVariable("id") long id) {
+        return userService.readById(id);
+    }
 }

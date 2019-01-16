@@ -66,7 +66,7 @@ public class UserDao {
                 new BeanPropertyRowMapper<>(User.class));
     }
 
-    public User readById(int userId) {
+    public User readById(long userId) {
         return jdbc.queryForObject("SELECT * FROM users WHERE id = ?",
                 new Object[]{userId},
                 new BeanPropertyRowMapper<>(User.class));

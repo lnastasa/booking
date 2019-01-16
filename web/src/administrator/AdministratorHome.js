@@ -34,7 +34,12 @@ export default class AdministratorHome extends Component {
 
                 <div>
                     Teachers
-                    <Users type='TEACHER' />
+                    <Users type='TEACHER' user={this.state.user} />
+                </div>
+
+                <div>
+                    Parents
+                    <Users type='PARENT' user={this.state.user} />
                 </div>
             </div>
         )

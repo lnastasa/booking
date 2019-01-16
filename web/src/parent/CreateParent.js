@@ -72,10 +72,10 @@ export default class CreateParent extends Component {
             })
             .then(response => {
                this.props.history.push({
-                  pathname:'/admin',
+                  pathname:'/createChild',
                   state : {
                     user: this.props.location.state.user,
-                    message: 'Parent created successfully'
+                    parent: response.data
                   }
                })
             }).catch(error => {
@@ -93,7 +93,7 @@ export default class CreateParent extends Component {
     render() {
         return (
             <div>
-                <div>Create Teacher</div>
+                <div>Create Parent</div>
 
                 {this.state.firstNameEmpty
                     ? <div>First Name must not be empty</div>
