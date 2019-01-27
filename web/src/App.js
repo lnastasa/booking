@@ -13,6 +13,7 @@ import ParentHome from './parent/ParentHome'
 
 import TeacherInfo from './teacher/TeacherInfo'
 import ParentInfo from './parent/ParentInfo'
+import ChildInfo from './child/ChildInfo'
 
 import CompleteRegistration from './register/CompleteRegistration'
 
@@ -31,7 +32,8 @@ const App = () => (
                 <Route exact path="/createChild" component={CreateChild} />
 
                 <Route exact path="/teacher/:id" component={TeacherInfo} /> 
-                <Route exact path="/parent/:id" component={ParentInfo} /> 
+                <Route exact path="/parent/:id" component={ParentInfo} />
+                <Route exact path="/child/:id" component={ChildInfo} />
 
                 <Route exact path="/register/:id" component={CompleteRegistration} />
             </div>  

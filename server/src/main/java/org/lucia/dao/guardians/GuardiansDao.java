@@ -1,0 +1,40 @@
+package org.lucia.dao.guardians;
+
+import org.lucia.model.guardians.Guardian;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
+
+import javax.annotation.PostConstruct;
+import javax.sql.DataSource;
+
+@Repository
+public class GuardiansDao {
+
+    @Autowired
+    private DataSource dataSource;
+
+    private SimpleJdbcInsert insert;
+
+    private JdbcTemplate jdbc;
+
+    @PostConstruct
+    public void configure() {
+        insert = new SimpleJdbcInsert(dataSource)
+                .withTableName("guardians")
+                .usingGeneratedKeyColumns("id");
+
+        jdbc = new JdbcTemplate(dataSource);
+    }
+
+    public Guardian create(Guardian guardian) {
+        SqlParameterSource parameters = new BeanPropertySqlParameterSource(guardian);
+        KeyHolder keyHolder = insert.executeAndReturnKeyHolder(parameters);
+        guardian.setId((Long) keyHolder.getKey());
+        return guardian;
+    }
+}

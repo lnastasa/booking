@@ -5,6 +5,8 @@ import org.lucia.model.childs.Child;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ChildService {
 
@@ -13,5 +15,16 @@ public class ChildService {
 
     public Child create(Child child) {
         return childDao.create(child);
+    }
+
+    public List<Child> readByParentId(int parentId) {
+        if (parentId == 0) {
+            return childDao.readAll();
+        }
+        return childDao.readByParentId(parentId);
+    }
+
+    public Child readById(long id) {
+        return childDao.readById(id);
     }
 }

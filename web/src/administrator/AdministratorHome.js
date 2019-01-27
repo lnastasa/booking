@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Navigation } from 'react-router'
 import {Link} from 'react-router-dom';
 import Users from '../user/Users';
+import AllChildren from '../child/AllChildren';
 
 export default class AdministratorHome extends Component {
 
@@ -40,6 +41,11 @@ export default class AdministratorHome extends Component {
                 <div>
                     Parents
                     <Users type='PARENT' user={this.state.user} />
+                </div>
+
+                <div>
+                    Children
+                    <AllChildren />
                 </div>
             </div>
         )
