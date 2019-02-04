@@ -27,19 +27,19 @@ export default class Login extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        if (this.state.email === undefined) {
+        if (this.state.email === "") {
             this.setState({emailEmpty: true});
         } else {
              this.setState({emailEmpty: false});
         }
 
-        if (this.state.password === undefined) {
+        if (this.state.password === "") {
             this.setState({passwordEmpty: true});
         } else {
             this.setState({passwordEmpty: false});
         }
 
-        if (this.state.email !== undefined && this.state.password !== undefined) {
+        if (this.state.email !== "" && this.state.password !== "") {
             axios.post('http://localhost:8080/security',
                 {
                     email: this.state.email,

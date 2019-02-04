@@ -1,8 +1,7 @@
-package org.lucia.dao.guardians;
+package org.lucia.dao.classes;
 
-import org.lucia.model.guardians.Guardian;
+import org.lucia.model.classes.Clazz;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -12,10 +11,9 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
-import java.util.List;
 
 @Repository
-public class GuardiansDao {
+public class ClassesDao {
 
     @Autowired
     private DataSource dataSource;
@@ -27,21 +25,21 @@ public class GuardiansDao {
     @PostConstruct
     public void configure() {
         insert = new SimpleJdbcInsert(dataSource)
-                .withTableName("guardians")
+                .withTableName("classes")
                 .usingGeneratedKeyColumns("id");
 
         jdbc = new JdbcTemplate(dataSource);
     }
 
-    public Guardian create(Guardian guardian) {
-        SqlParameterSource parameters = new BeanPropertySqlParameterSource(guardian);
+    public Clazz create(Clazz clazz) {
+        SqlParameterSource parameters = new BeanPropertySqlParameterSource(clazz);
         KeyHolder keyHolder = insert.executeAndReturnKeyHolder(parameters);
-        guardian.setId((Long) keyHolder.getKey());
-        return guardian;
+        clazz.setId((Long) keyHolder.getKey());
+        return clazz;
     }
 
-    public List<Guardian> readByChildId(int childId) {
-        String sql = String.format("select * from guardians where child_id = %s;", childId);
-        return jdbc.query(sql, new BeanPropertyRowMapper<>(Guardian.class));
+    public void addChild(long classId, long childId) {
+        String sql = String.format("INSERT INTO child_class (class_id, child_id) VALUES (%s,%s);", classId, childId);
+        jdbc.execute(sql);
     }
 }

@@ -27,8 +27,7 @@ public class ChildDao {
     @PostConstruct
     public void configure() {
         insert = new SimpleJdbcInsert(dataSource)
-                .withTableName("childs" +
-                        "")
+                .withTableName("childs")
                 .usingGeneratedKeyColumns("id");
 
         jdbc = new JdbcTemplate(dataSource);

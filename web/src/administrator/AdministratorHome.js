@@ -47,6 +47,12 @@ export default class AdministratorHome extends Component {
                     Children
                     <AllChildren />
                 </div>
+
+                <div>
+                    <Link to={{
+                       pathname:'/createClass'
+                    }}>Create Class </Link>
+                </div>
             </div>
         )
     }

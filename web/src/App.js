@@ -6,6 +6,8 @@ import Login from './login/login'
 import CreateTeacher from './teacher/CreateTeacher'
 import CreateParent from './parent/CreateParent'
 import CreateChild from './child/CreateChild'
+import CreateGuardian from './guardian/CreateGuardian'
+import CreateClass from './classes/CreateClass'
 
 import AdministratorHome from './administrator/AdministratorHome'
 import TeacherHome from './teacher/TeacherHome'
@@ -30,6 +32,8 @@ const App = () => (
                 <Route exact path="/createTeacher" component={CreateTeacher} />
                 <Route exact path="/createParent" component={CreateParent} />
                 <Route exact path="/createChild" component={CreateChild} />
+                <Route exact path="/createGuardian" component={CreateGuardian} />
+                <Route exact path="/createClass" component={CreateClass} />
 
                 <Route exact path="/teacher/:id" component={TeacherInfo} /> 
                 <Route exact path="/parent/:id" component={ParentInfo} />
