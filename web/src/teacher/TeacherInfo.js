@@ -27,7 +27,7 @@ export default class TeacherInfo extends Component {
     render() {
         return (
             <div>
-            	<div>Teacher Info</div>
+            	<div>Teacher Information</div>
                 {this.state.componentLoaded
                     ? 
                     	<div>

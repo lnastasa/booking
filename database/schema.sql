@@ -29,3 +29,24 @@ CREATE TABLE childs (
     parent_id BIGINT NOT NULL,
     PRIMARY KEY (id)
 ) AUTO_INCREMENT = 42000;
+
+CREATE TABLE `guardians` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `firstname` varchar(100) NOT NULL,
+  `lastname` varchar(100) NOT NULL,
+  `child_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ;
+
+CREATE TABLE `classes` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `teacher_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `child_class` (
+  `child_id` bigint(20) NOT NULL,
+  `class_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`child_id`,`class_id`)
+) 

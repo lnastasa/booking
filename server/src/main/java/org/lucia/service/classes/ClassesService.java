@@ -14,12 +14,22 @@ public class ClassesService {
     private ClassesDao classesDao;
 
     public Clazz create(Clazz clazz) {
-        return classesDao.create(clazz);
+        clazz = classesDao.create(clazz);
+        addChildren(clazz.getId(), clazz.getChildIds());
+        return clazz;
     }
 
-    public void addChildren(long classId, List<Long> childIds) {
+    private void addChildren(long classId, List<Long> childIds) {
         for (long childId : childIds) {
             classesDao.addChild(classId, childId);
         }
+    }
+
+    public List<Clazz> readAll() {
+        return classesDao.readAll();
+    }
+
+    public Clazz readById(long id) {
+        return classesDao.readById(id);
     }
 }

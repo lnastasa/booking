@@ -3,6 +3,7 @@ import { Navigation } from 'react-router'
 import {Link} from 'react-router-dom';
 import Users from '../user/Users';
 import AllChildren from '../child/AllChildren';
+import AllClasses from '../classes/AllClasses';
 
 export default class AdministratorHome extends Component {
 
@@ -23,24 +24,22 @@ export default class AdministratorHome extends Component {
                     ? <div>{this.state.message}</div>
                     : null
                 }
-                <div>Admin home, {this.state.user.firstName}</div>
+                <div>Admin Home</div>
                 <Link to={{
-                       pathname:'/createTeacher',
-                       state : { user: this.state.user }
+                       pathname:'/createTeacher'
                     }}>Create Teacher </Link>
                 <Link to={{
-                       pathname:'/createParent',
-                       state : { user: this.state.user }
+                       pathname:'/createParent'
                     }}>Create Parent </Link>
 
                 <div>
                     Teachers
-                    <Users type='TEACHER' user={this.state.user} />
+                    <Users type='TEACHER' />
                 </div>
 
                 <div>
                     Parents
-                    <Users type='PARENT' user={this.state.user} />
+                    <Users type='PARENT' />
                 </div>
 
                 <div>
@@ -49,10 +48,16 @@ export default class AdministratorHome extends Component {
                 </div>
 
                 <div>
+                    Classes
+                    <AllClasses />
+                </div>
+
+                <div>
                     <Link to={{
                        pathname:'/createClass'
                     }}>Create Class </Link>
                 </div>
+
             </div>
         )
     }

@@ -43,7 +43,7 @@ export default class ParentInfo extends Component {
     render() {
         return (
             <div>
-            	<div>Parent Info</div>
+            	<div>Parent Information</div>
                 {this.state.parentInfoLoaded
                     ?
                         <div>

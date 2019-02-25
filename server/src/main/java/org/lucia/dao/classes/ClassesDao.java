@@ -2,6 +2,7 @@ package org.lucia.dao.classes;
 
 import org.lucia.model.classes.Clazz;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
+import java.util.List;
 
 @Repository
 public class ClassesDao {
@@ -27,7 +29,6 @@ public class ClassesDao {
         insert = new SimpleJdbcInsert(dataSource)
                 .withTableName("classes")
                 .usingGeneratedKeyColumns("id");
-
         jdbc = new JdbcTemplate(dataSource);
     }
 
@@ -41,5 +42,16 @@ public class ClassesDao {
     public void addChild(long classId, long childId) {
         String sql = String.format("INSERT INTO child_class (class_id, child_id) VALUES (%s,%s);", classId, childId);
         jdbc.execute(sql);
+    }
+
+    public List<Clazz> readAll() {
+        String sql = String.format("select * from classes");
+        return jdbc.query(sql, new BeanPropertyRowMapper<>(Clazz.class));
+    }
+
+    public Clazz readById(long id) {
+        return jdbc.queryForObject("SELECT * FROM classes WHERE id = ?",
+                new Object[]{id},
+                new BeanPropertyRowMapper<>(Clazz.class));
     }
 }

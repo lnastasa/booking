@@ -1,5 +1,7 @@
 package org.lucia.model.classes;
 
+import java.util.List;
+
 public class Clazz {
 
     long id;
@@ -7,6 +9,16 @@ public class Clazz {
     String name;
 
     long teacherId;
+
+    List<Long> childIds;
+
+    public List<Long> getChildIds() {
+        return childIds;
+    }
+
+    public void setChildIds(List<Long> childIds) {
+        this.childIds = childIds;
+    }
 
     public long getId() {
         return id;

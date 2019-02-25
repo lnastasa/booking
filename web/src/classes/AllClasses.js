@@ -1,28 +1,28 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import ChildList from '../child/ChildList'
+import ClassList from './ClassList';
 
-export default class AllChildren extends Component {
+export default class AllClasses extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            childrenInfoLoaded : false
+            classInfoLoaded : false
         };
     }
 
     componentDidMount() {
-        this.loadChildren();
+        this.loadClasses();
     }
 
-    loadChildren = () => {
+    loadClasses = () => {
         let component  = this;
-        axios.get('http://localhost:8080/childs?parentId=0')
+        axios.get('http://localhost:8080/classes')
             .then(function (response) {
                 component.setState({
-                    children: response.data,
-                    childrenInfoLoaded: true
+                    classes: response.data,
+                    classInfoLoaded: true
                 });
             })
     }
@@ -30,9 +30,9 @@ export default class AllChildren extends Component {
     render() {
         return (
             <div>
-                {this.state.childrenInfoLoaded
+                {this.state.classInfoLoaded
                     ?
-                      <ChildList children={this.state.children}/>
+                      <ClassList classes={this.state.classes}/>
                     : <div>'Loading ....'</div>
                 }
             </div>
