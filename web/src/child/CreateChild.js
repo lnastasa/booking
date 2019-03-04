@@ -10,7 +10,6 @@ export default class CreateChild extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            user: this.props.location.state.user,
             parent : this.props.location.state.parent,
 
             firstName : '',
@@ -65,7 +64,6 @@ export default class CreateChild extends Component {
                    this.props.history.push({
                       pathname:'/admin',
                       state : {
-                        user: this.props.location.state.user,
                         message: 'Child created successfully'
                       }
                    })

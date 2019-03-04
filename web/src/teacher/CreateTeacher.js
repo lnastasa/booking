@@ -8,9 +8,8 @@ export default class CreateTeacher extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {user: this.props.location.state.user};
 
-        // Bind methods
+        //Bind methods
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
 
@@ -74,7 +73,6 @@ export default class CreateTeacher extends Component {
                this.props.history.push({
                   pathname:'/admin',
                   state : {
-                    user: this.props.location.state.user,
                     message: 'Teacher created successfully'
                   }
                })

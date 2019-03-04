@@ -8,7 +8,6 @@ export default class CreateParent extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {user: this.props.location.state.user};
 
         // Bind methods
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -74,7 +73,6 @@ export default class CreateParent extends Component {
                this.props.history.push({
                   pathname:'/createChild',
                   state : {
-                    user: this.props.location.state.user,
                     parent: response.data
                   }
                })

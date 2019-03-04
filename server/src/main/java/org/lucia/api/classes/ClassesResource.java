@@ -40,4 +40,19 @@ public class ClassesResource {
     public Clazz readById(@PathVariable("id") long id) {
         return classesService.readById(id);
     }
+
+    @RequestMapping(value = "/classes/{id}/children", method = GET)
+    @ResponseStatus(value = OK)
+    @ResponseBody
+    public List<Child> readChildrenById(@PathVariable("id") long id) {
+        return classesService.readChildrenById(id);
+    }
+
+    @RequestMapping(value = "/classes/teacher/{id}", method = GET)
+    @ResponseStatus(value = OK)
+    @ResponseBody
+    public List<Clazz> readByTeacherId(@PathVariable("id") int teacherId) {
+        return classesService.readByTeacherId(teacherId);
+    }
+
 }

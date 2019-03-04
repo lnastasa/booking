@@ -18,6 +18,8 @@ import ParentInfo from './parent/ParentInfo'
 import ChildInfo from './child/ChildInfo'
 import ClassInfo from './classes/ClassInfo'
 
+import TakeAttendance from './classes/TakeAttendance';
+
 import CompleteRegistration from './register/CompleteRegistration'
 
 const App = () => (
@@ -42,6 +44,7 @@ const App = () => (
                 <Route exact path="/class/:id" component={ClassInfo} />
 
                 <Route exact path="/register/:id" component={CompleteRegistration} />
+                <Route exact path="/attendance/:id" component={TakeAttendance} />
             </div>  
         </Router>
     </div>

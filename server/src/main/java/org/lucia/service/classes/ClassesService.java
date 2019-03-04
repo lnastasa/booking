@@ -1,6 +1,7 @@
 package org.lucia.service.classes;
 
 import org.lucia.dao.classes.ClassesDao;
+import org.lucia.model.childs.Child;
 import org.lucia.model.classes.Clazz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,5 +32,13 @@ public class ClassesService {
 
     public Clazz readById(long id) {
         return classesDao.readById(id);
+    }
+
+    public List<Child> readChildrenById(long classId) {
+        return classesDao.readChildrenIds(classId);
+    }
+
+    public List<Clazz> readByTeacherId(int teacherId) {
+        return classesDao.readByTeacherId(teacherId);
     }
 }

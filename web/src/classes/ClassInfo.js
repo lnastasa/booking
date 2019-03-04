@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import ChildList from '../child/ChildList'
+import { Navigation } from 'react-router'
+import {Link} from 'react-router-dom';
 
 export default class ClassInfo extends Component {
+
+    mixins: [Navigation];
 
 	constructor(props) {
         super(props);
 
         this.state = {
             classLoaded : false,
-            teacherLoaded : false
+            teacherLoaded : false,
+            childrenLoaded : false
         };
     }
 
@@ -25,11 +31,19 @@ export default class ClassInfo extends Component {
                 classLoaded: true
             })
 
-            axios.get('http://localhost:8080/users/TEACHER/' + response.data.teacherId)
+        axios.get('http://localhost:8080/users/TEACHER/' + response.data.teacherId)
+            .then(function (response) {
+                 component.setState({
+                    teacher: response.data,
+                    teacherLoaded: true
+                })
+            })
+
+        axios.get('http://localhost:8080/classes/' + component.props.match.params.id + '/children')
             .then(function (response) {
              component.setState({
-                 teacher: response.data,
-                 teacherLoaded: true
+                 children: response.data,
+                 childrenLoaded: true
             })
             })
         });
@@ -39,11 +53,15 @@ export default class ClassInfo extends Component {
         return (
             <div>
             	<div>Class Info</div>
-                {this.state.classLoaded && this.state.teacherLoaded
+                {this.state.classLoaded && this.state.teacherLoaded && this.state.childrenLoaded
                     ?
                         <div>
                             <div>Name : &nbsp; {this.state.class.name}</div>
                             <div>Teacher : &nbsp; {this.state.teacher.firstName} {this.state.teacher.lastName}</div>
+                            <ChildList children={this.state.children}/>
+                             <Link to={{
+                               pathname:'/attendance/' + this.state.class.id
+                            }}>Take Attendance</Link>
                         </div>
                     : <div>'Loading ....'</div>
                 }

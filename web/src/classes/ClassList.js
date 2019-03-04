@@ -9,7 +9,7 @@ export default class ClassList extends Component {
                 {
                     this.props.classes.length === 0
                     ?
-                        null
+                        <span>Class list is empty</span>
                     :
                         <ul>
                             {

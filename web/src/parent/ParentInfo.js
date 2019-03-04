@@ -12,9 +12,7 @@ export default class ParentInfo extends Component {
 
         this.state = {
             parentInfoLoaded : false,
-            childrenInfoLoaded : false,
-
-            user: this.props.location.state.user
+            childrenInfoLoaded : false
         };
     }
 

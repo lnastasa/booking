@@ -1,5 +1,6 @@
 package org.lucia.dao.classes;
 
+import org.lucia.model.childs.Child;
 import org.lucia.model.classes.Clazz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -53,5 +54,15 @@ public class ClassesDao {
         return jdbc.queryForObject("SELECT * FROM classes WHERE id = ?",
                 new Object[]{id},
                 new BeanPropertyRowMapper<>(Clazz.class));
+    }
+
+    public List<Child> readChildrenIds(long classId) {
+        String sql = String.format("select * from childs join child_class on childs.id = child_class.child_id where child_class.class_id = %s", classId);
+        return jdbc.query(sql, new BeanPropertyRowMapper<>(Child.class));
+    }
+
+    public List<Clazz> readByTeacherId(int teacherId) {
+        String sql = String.format("select * from classes where teacher_id = %s", teacherId);
+        return jdbc.query(sql, new BeanPropertyRowMapper<>(Clazz.class));
     }
 }
