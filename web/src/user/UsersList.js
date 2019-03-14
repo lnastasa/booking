@@ -5,11 +5,11 @@ export default class UsersList extends Component {
 
     render() {
         return (
-            <div>
+            <div class="row">
                 {
                     this.props.users.length === 0
                     ?
-                        <div> No users provided, something is wrong </div>
+                        <div class="col-6 col-offset-2 alert alert-warning" role="alert"> No users provided</div>
                     :
                         <ul>
                             {
@@ -21,5 +21,5 @@ export default class UsersList extends Component {
                 }
             </div>
         );
-    }
+        }
 }

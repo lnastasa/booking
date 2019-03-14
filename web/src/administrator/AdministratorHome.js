@@ -19,43 +19,64 @@ export default class AdministratorHome extends Component {
 
     render() {
         return (
-            <div>
-                {this.state.message !== undefined
-                    ? <div>{this.state.message}</div>
+            <div id="component_root">
+
+                {this.props.location.state.message !== undefined
+                    ? <div class="row"><div class="alert alert-success col-6" role="alert">{this.props.location.state.message}</div></div>
                     : null
                 }
-                <div>Admin Home</div>
-                <Link to={{
-                       pathname:'/createTeacher'
+                <div class="row page_label">
+                    <span class="display-4">Admin Home</span>
+                </div>
+
+                <div class="row button_row">
+                    <Link class="btn btn-info" to={{
+                        pathname:'/createTeacher'
                     }}>Create Teacher </Link>
-                <Link to={{
-                       pathname:'/createParent'
+
+                    <Link class="btn btn-info" to={{
+                        pathname:'/createParent'
                     }}>Create Parent </Link>
 
-                <div>
-                    Teachers
-                    <Users type='TEACHER' />
-                </div>
-
-                <div>
-                    Parents
-                    <Users type='PARENT' />
-                </div>
-
-                <div>
-                    Children
-                    <AllChildren />
-                </div>
-
-                <div>
-                    Classes
-                    <AllClasses />
-                </div>
-
-                <div>
-                    <Link to={{
-                       pathname:'/createClass'
+                    <Link class="btn btn-info" to={{
+                        pathname:'/createClass'
                     }}>Create Class </Link>
+                </div>
+
+                <div class="row top-spacer-10">
+                    <h4>Teachers</h4>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <Users type='TEACHER' />
+                    </div>
+                </div>
+
+                <div class="row top-spacer-10">
+                    <h4>Parents</h4>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <Users type='PARENT' />
+                    </div>
+                </div>
+
+                <div class="row top-spacer-10">
+                    <h4>Children</h4>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <AllChildren />
+                    </div>
+                </div>
+
+                <div class="row top-spacer-10">
+                    <h4>Classes</h4>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <AllClasses />
+                    </div>
                 </div>
 
             </div>

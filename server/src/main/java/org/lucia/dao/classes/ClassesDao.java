@@ -36,7 +36,7 @@ public class ClassesDao {
     public Clazz create(Clazz clazz) {
         SqlParameterSource parameters = new BeanPropertySqlParameterSource(clazz);
         KeyHolder keyHolder = insert.executeAndReturnKeyHolder(parameters);
-        clazz.setId((Long) keyHolder.getKey());
+        clazz.setId(keyHolder.getKey().longValue());
         return clazz;
     }
 

@@ -38,7 +38,7 @@ public class UserDao {
     public User create(User user) {
         SqlParameterSource parameters = new BeanPropertySqlParameterSource(user);
         KeyHolder keyHolder = insert.executeAndReturnKeyHolder(parameters);
-        user.setId((Long) keyHolder.getKey());
+        user.setId(keyHolder.getKey().longValue());
         return user;
     }
 

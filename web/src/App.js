@@ -21,6 +21,7 @@ import ClassInfo from './classes/ClassInfo'
 import TakeAttendance from './classes/TakeAttendance';
 
 import CompleteRegistration from './register/CompleteRegistration'
+import AttendanceReportInfo from "./attendance/AttendanceReportInfo";
 
 const App = () => (
     <div>
@@ -45,7 +46,8 @@ const App = () => (
 
                 <Route exact path="/register/:id" component={CompleteRegistration} />
                 <Route exact path="/attendance/:id" component={TakeAttendance} />
-            </div>  
+                <Route exact path="/attendance/report/:id" component={AttendanceReportInfo} />
+            </div>
         </Router>
     </div>
 );

@@ -1,6 +1,5 @@
 package org.lucia.api.exceptions;
 
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -13,12 +12,6 @@ public class ExceptionController {
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(value=HttpStatus.BAD_REQUEST)
     public void handleIllegalArgument(IllegalArgumentException e) {
-        e.printStackTrace();
-    }
-
-    @ExceptionHandler(MySQLIntegrityConstraintViolationException.class)
-    @ResponseStatus(value=HttpStatus.BAD_REQUEST)
-    public void handleMySQLIntegrityConstraintViolationException(MySQLIntegrityConstraintViolationException e) {
         e.printStackTrace();
     }
 

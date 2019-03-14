@@ -122,6 +122,10 @@ export default class CreateClass extends Component {
                     { this.state.teachersLoaded && this.state.childrenLoaded
                     ?
                    <div>
+                       {this.state.createFailed
+                              ? <div>Unable to create class</div>
+                              : null
+                        }
                         {this.state.nameEmpty
                             ? <div>Name must not be empty</div>
                             : null

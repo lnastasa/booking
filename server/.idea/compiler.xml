@@ -9,5 +9,8 @@
         <module name="booking" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="booking" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

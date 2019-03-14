@@ -34,13 +34,13 @@ export default class CompleteRegistration extends Component {
     handleSubmit(event) {
          event.preventDefault();
 
-         if (this.state.password === undefined) {
+         if (this.state.password === '') {
             this.setState({passwordEmpty: true});
         } else {
              this.setState({passwordEmpty: false});
         }
 
-         if (this.state.passwordConfirm === undefined) {
+         if (this.state.passwordConfirm === '') {
             this.setState({passwordConfirmEmpty: true});
         } else {
              this.setState({passwordConfirmEmpty: false});
@@ -52,7 +52,7 @@ export default class CompleteRegistration extends Component {
             this.setState({passwordMismatch: false});
         }
 
-        if (this.state.password !== undefined
+        if (this.state.password !== ''
             && this.state.password === this.state.passwordConfirm) {
 
             axios.put('http://localhost:8080/users/register',
@@ -75,33 +75,43 @@ export default class CompleteRegistration extends Component {
 
      render() {
         return (
-            <div>
-                <div> Complete Registration</div>
-                {this.state.passwordEmpty
-                    ? <div>Password must not be empty</div>
-                    : null
-                }
-                {this.state.passwordConfirmEmpty
-                    ? <div>Confirmation Password must not be empty</div>
-                    : null
-                }
-                {this.state.passwordMismatch
-                    ? <div>Passwords must match</div>
-                    : null
-                }
+            <div id="component_root">
+                <div class="row page_label">
+                    <span class="display-4">Complete Registration</span>
+                </div>
+
                 {this.state.registerFailed
-                    ? <div>Registration Failed</div>
+                    ? <div class="alert alert-danger col-4" role="alert">Registration Failed</div>
                     : null
                 }
 
                 <form onSubmit={this.handleSubmit}>
-                    <label>Password:
-                        <input type="password" name="password" onChange={this.handleInputChange} />
-                    </label>
-                    <label>Confirm Password:
-                        <input type="password" name="passwordConfirm" onChange={this.handleInputChange} />
-                    </label>
-                  <input type="submit" value="Register"  />
+
+                     {this.state.passwordEmpty
+                         ? <div class="alert alert-danger col-4" role="alert">Password must not be empty</div>
+                        : null
+                     }
+                    <div class="row">
+                        <label class="col-3">Password</label>
+                        <input class="col-5" type="password" name="password" onChange={this.handleInputChange} />
+                    </div>
+
+                     {this.state.passwordConfirmEmpty
+                         ? <div class="alert alert-danger col-4" role="alert">Confirmation Password must not be empty</div>
+                         : null
+                     }
+                    <div class="row">
+                        <label class="col-3">Confirm Password</label>
+                        <input class="col-5" type="password" name="passwordConfirm" onChange={this.handleInputChange} />
+                    </div>
+
+                     {this.state.passwordMismatch
+                         ? <div class="alert alert-danger col-4" role="alert">Passwords must match</div>
+                        : null
+                     }
+                     <div class="row">
+                        <input class="col-2 btn btn-info" type="submit" value="Register"/>
+                     </div>
                 </form>
             </div>
          )

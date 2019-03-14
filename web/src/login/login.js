@@ -80,31 +80,41 @@ export default class Login extends Component {
 
     render() {
         return (
-            <div>
+            <div id="login_root" class="jumbotron">
                 {this.state.message !== undefined
-                    ? <div>{this.state.message}</div>
+                    ? <div class="alert alert-primary" role="alert">{this.state.message}</div>
                     : null
                 }
-                {this.state.loginFailed
-                    ? <div>Email or Password is incorrect</div>
+
+                <form class="center-block" onSubmit={this.handleSubmit}>
+
+                    {this.state.loginFailed
+                        ? <div class="alert alert-danger" role="alert">Email or Password is incorrect</div>
                     : null
-                }
-                {this.state.emailEmpty
-                    ? <div>Email must not be empty</div>
+                    }
+                    {this.state.emailEmpty
+                        ? <div class="alert alert-danger" role="alert">Email must not be empty</div>
                     : null
-                }
-                {this.state.passwordEmpty
-                    ? <div>Password must not be empty</div>
+                    }
+
+                    <div class="row">
+                        <label class="col-3">Email:</label>
+                        <input class="col-8" type="text" name="email" onChange={this.handleInputChange} />
+                    </div>
+
+                    {this.state.passwordEmpty
+                        ? <div class="alert alert-danger" role="alert">Password must not be empty</div>
                     : null
-                }
-                <form onSubmit={this.handleSubmit}>
-                    <label>Email:
-                        <input type="text" name="email" onChange={this.handleInputChange} />
-                    </label>
-                    <label>Password:
-                        <input type="password" name="password" onChange={this.handleInputChange} />
-                    </label>
-                  <input type="submit" value="Login"  />
+                    }
+
+                    <div class="row">
+                        <label class="col-3">Password:</label>
+                        <input class="col-8" type="password" name="password" onChange={this.handleInputChange} />
+                    </div>
+                    <div class="row">
+                        <div class="col-3">&nbsp;</div>
+                        <input class="col-2 btn btn-info" type="submit" value="Login"  />
+                    </div>
                 </form>
             </div>
         );

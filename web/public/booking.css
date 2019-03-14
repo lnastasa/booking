@@ -1,0 +1,53 @@
+#login_root {
+    width: 500px;
+}
+
+#component_root {
+    width: 1000px;
+}
+
+.alert{
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
+.attendance_record_row_true {
+    background-color: red;
+}
+
+.attendance_record_row_false {
+    background-color: blue;
+}
+
+.page_label {
+    margin-bottom: 15px;
+}
+
+.button_row {
+    margin-bottom: 15px;
+}
+
+.top-spacer-10 {
+    margin-top: 10px;
+}
+
+.btn {
+    margin: 2px;
+}
+
+.col-2 {
+    margin: 2px;
+}
+
+.col-3 {
+    margin: 2px;
+    margin-left: 10px;
+}
+
+.col-5 {
+    margin: 2px;
+}
+
+.col-8 {
+    margin: 2px;
+}

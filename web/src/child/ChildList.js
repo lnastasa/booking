@@ -5,11 +5,11 @@ export default class ChildList extends Component {
 
     render() {
         return (
-            <div>
+            <div class="row">
                 {
                     this.props.children.length === 0
                     ?
-                        null
+                        <div class="col-6 col-offset-2 alert alert-warning" role="alert">No children in list</div>
                     :
                         <ul>
                             {

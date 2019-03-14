@@ -1,13 +1,20 @@
 DROP SCHEMA booking;
 CREATE SCHEMA booking;
-
+USE booking;
 
 DROP USER IF EXISTS 'booking_server'@'localhost';
-CREATE USER 'booking_server'@'localhost' IDENTIFIED BY 'password';
+CREATE USER 'booking_server'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
 GRANT ALL ON *.* TO 'booking_server'@'localhost';
+
+DROP USER IF EXISTS 'booking_server'@'172.17.0.1';
+CREATE USER 'booking_server'@'172.17.0.1' IDENTIFIED WITH mysql_native_password BY 'password';
+GRANT ALL ON *.* TO 'booking_server'@'172.17.0.1';
 
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS childs;
+DROP TABLE IF EXISTS guardians;
+DROP TABLE IF EXISTS classes;
+DROP TABLE IF EXISTS child_class;
 
 CREATE TABLE users (
 	id BIGINT NOT NULL AUTO_INCREMENT,
@@ -49,4 +56,18 @@ CREATE TABLE `child_class` (
   `child_id` bigint(20) NOT NULL,
   `class_id` bigint(20) NOT NULL,
   PRIMARY KEY (`child_id`,`class_id`)
-) 
+); 
+
+CREATE TABLE `attendance_report` (
+  `id` bigint(20) NOT NULL  AUTO_INCREMENT,
+  `class_id` bigint(20) NOT NULL,
+  `timestamp` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`,`class_id`,`timestamp`)
+); 
+
+CREATE TABLE `attendance_report_child` (
+  `attendance_report_id` bigint(20) NOT NULL,
+  `child_id` bigint(20) NOT NULL,
+  `present` tinyint(1) NOT NULL,
+  PRIMARY KEY (`attendance_report_id`,`child_id`)
+); 

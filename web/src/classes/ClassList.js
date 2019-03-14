@@ -5,11 +5,11 @@ export default class ClassList extends Component {
 
     render() {
         return (
-            <div>
+            <div class="row">
                 {
                     this.props.classes.length === 0
                     ?
-                        <span>Class list is empty</span>
+                        <div class="col-6 col-offset-2 alert alert-warning" role="alert">Class list is empty</div>
                     :
                         <ul>
                             {

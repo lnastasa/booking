@@ -36,7 +36,7 @@ public class ChildDao {
     public Child create(Child child) {
         SqlParameterSource parameters = new BeanPropertySqlParameterSource(child);
         KeyHolder keyHolder = insert.executeAndReturnKeyHolder(parameters);
-        child.setId((Long) keyHolder.getKey());
+        child.setId(keyHolder.getKey().longValue());
         return child;
     }
 
