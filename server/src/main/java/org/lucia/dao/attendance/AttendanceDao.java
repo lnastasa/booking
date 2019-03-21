@@ -2,7 +2,7 @@ package org.lucia.dao.attendance;
 
 import org.lucia.model.attendance.AttendanceItem;
 import org.lucia.model.attendance.AttendanceReport;
-import org.lucia.model.childs.Child;
+import org.lucia.model.attendance.DatedPresenceItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Repository;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -71,9 +70,14 @@ public class AttendanceDao {
                 new BeanPropertyRowMapper<>(AttendanceReport.class));
 
         String sql = String.format("select * from attendance_report_child where attendance_report_id = %s", reportId);
-        List<AttendanceItem> attendanceItems =  jdbc.query(sql, new BeanPropertyRowMapper<>(AttendanceItem.class));
+        List<AttendanceItem> attendanceItems = jdbc.query(sql, new BeanPropertyRowMapper<>(AttendanceItem.class));
 
         attendanceReport.setAttendance(attendanceItems);
         return attendanceReport;
+    }
+
+    public List<DatedPresenceItem> readByChildId(long childId) {
+        String sql = String.format("select timestamp, present from attendance_report_child join attendance_report on attendance_report.id = attendance_report_child.attendance_report_id where attendance_report_child.child_id = %s;", childId);
+        return jdbc.query(sql, new BeanPropertyRowMapper<>(DatedPresenceItem.class));
     }
 }

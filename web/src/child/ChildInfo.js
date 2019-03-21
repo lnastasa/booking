@@ -3,6 +3,8 @@ import axios from 'axios'
 import moment from 'moment'
 import {Link} from 'react-router-dom';
 import GuardianList from '../guardian/GuardianList';
+import ChildAttendance from '../attendance/ChildAttendance';
+import renderLoadWait from '../common/loadUtil';
 
 export default class ChildInfo extends Component {
 
@@ -39,24 +41,43 @@ export default class ChildInfo extends Component {
 
     render() {
         return (
-            <div>
-            	<div>Child Info</div>
+            <div id="component_root">
+                <div class="row page_label">
+                    <span class="display-4">Child Info</span>
+                </div>
                 {this.state.childLoaded && this.state.guardiansLoaded
                     ?
-                    	<div>
-                    		<div>{this.state.child.firstName} {this.state.child.lastName}
-                    		    {moment.unix(this.state.child.dateOfBirth).format('DD/MM/YYYY')}
-                            </div>
-                            <div>
-                                <GuardianList guardians={this.state.guardians}/>
-                            </div>
-                            <div><Link to={{pathname:'/createGuardian',
+                    	<div class="row col-12">
+                            <div class="row col-12">
+                                <Link class="btn btn-info"
+                                      to={{pathname:'/createGuardian',
                                     state : { child: this.state.child }
-                                    }}>Add Guardian
+                                }}>Add Guardian
                                 </Link>
                             </div>
+
+                    		<div class="row col-12 top-spacer-10">
+                                <div class="row col-12">
+                                    <h5 class="display-5">Info</h5>
+                                </div>
+                                <div class="row col-12">
+                                    <span class="col-6">Name</span>
+                                    <span class="col-6">{this.state.child.firstName +' '+ this.state.child.lastName}</span>
+                                </div>
+                                <div class="row col-12">
+                                    <span class="col-6">Date of Birth</span>
+                                    <span class="col-6">{moment.unix(this.state.child.dateOfBirth).format('DD/MM/YYYY')}</span>
+                                </div>
+                            </div>
+
+                            <div class="row col-12 top-spacer-10">
+                                <h5 class="display-5">Guardians</h5>
+                                <GuardianList guardians={this.state.guardians}/>
+                            </div>
+
+                            <ChildAttendance childId={this.state.child.id}/>
                     	</div>
-                    : <div>'Loading ....'</div>
+                    : renderLoadWait()
                 }
             </div>
         );

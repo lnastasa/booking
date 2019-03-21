@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import moment from 'moment'
+import renderLoadWait from '../common/loadUtil';
 
 export default class AttendanceReportInfo extends Component {
 
@@ -10,6 +11,9 @@ export default class AttendanceReportInfo extends Component {
         this.state = {
             reportLoaded : false,
             report: {},
+
+            childrenLoaded:false,
+            children: {}
         };
     }
 
@@ -18,33 +22,58 @@ export default class AttendanceReportInfo extends Component {
     }
 
     loadReport() {
-        let component  = this;
+        let component = this;
         axios.get('http://localhost:8080/attendance/report/' + component.props.match.params.id)
-        .then(function (response) {
-            component.setState({
-                report : response.data,
-                reportLoaded : true
+            .then(function (response) {
+                component.setState({
+                    report: response.data,
+                    reportLoaded: true
+                })
+
+                axios.get('http://localhost:8080/classes/' + component.state.report.classId + '/children')
+                    .then(function (response) {
+                        component.setState({
+                            children: response.data,
+                            childrenLoaded: true
+                        })
+                    })
             })
-        })
+    }
+
+    getChild(childId) {
+        return this.state.children.find(child => {
+            return child.id === childId;
+        });
     }
 
     render() {
         return (
-            <div>
+            <div class="component_root col-12">
+                <div class="row page_label">
+                    <span class="display-4">Attendance Report</span>
+                </div>
             {
-                this.state.reportLoaded ?
-                    <div class="row">
-                        <span>{moment.unix(this.state.report.timestamp).format('DD/MM/YYYY')}</span>
-                        <div>
+                this.state.reportLoaded && this.state.childrenLoaded ?
+                    <div class="row col-12">
+                        <div class="row col-12">
+                        <div class="row col-12">
+                            <span class="col-6">Date</span>
+                            <span class="col-6">{moment.unix(this.state.report.timestamp).format('DD/MM/YYYY')}</span>
+                        </div>
+                        </div>
+                        <div class="row col-12">
                             {
                                 this.state.report.attendance.map(function (attendance, index) {
-                                    return <div>{attendance.childId} {''+attendance.present}</div>
-                                })
+                                    var child = this.getChild(attendance.childId)
+                                    return <div class="row col-12">
+                                        <span class="col-6">{child.firstName +' '+ child.lastName}</span>
+                                        <span class="col-6">{''+attendance.present}</span>
+                                    </div>
+                                }, this)
                             }
                         </div>
                     </div>
-                :
-                    <div>'Loading ....'</div>
+                : renderLoadWait()
             }
             </div>
         );

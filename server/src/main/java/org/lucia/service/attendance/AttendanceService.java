@@ -2,6 +2,7 @@ package org.lucia.service.attendance;
 
 import org.lucia.dao.attendance.AttendanceDao;
 import org.lucia.model.attendance.AttendanceReport;
+import org.lucia.model.attendance.DatedPresenceItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +24,9 @@ public class AttendanceService {
 
     public AttendanceReport readByReportId(long reportId) {
         return attendanceDao.readByReportId(reportId);
+    }
+
+    public List<DatedPresenceItem> readByChildId(long childId) {
+        return attendanceDao.readByChildId(childId);
     }
 }

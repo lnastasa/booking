@@ -1,11 +1,3 @@
-#login_root {
-    width: 500px;
-}
-
-#component_root {
-    width: 1000px;
-}
-
 .alert{
     margin-bottom: 0px;
     margin-top: 10px;
@@ -31,8 +23,17 @@
     margin-top: 10px;
 }
 
+.bottom-spacer-10 {
+    margin-bottom: 10px;
+}
+
 .btn {
     margin: 2px;
+}
+
+.height_bound {
+    overflow: scroll;
+    height: 400px;
 }
 
 .col-2 {

@@ -1,15 +1,13 @@
 package org.lucia.api.attendance;
 
 import org.lucia.model.attendance.AttendanceReport;
-import org.lucia.model.childs.Child;
-import org.lucia.model.classes.Clazz;
+import org.lucia.model.attendance.DatedPresenceItem;
 import org.lucia.service.attendance.AttendanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
@@ -29,10 +27,17 @@ public class AttendanceResource {
         return attendanceService.create(attendanceReport);
     }
 
+    @RequestMapping(value = "/attendance/child/{id}", method = GET)
+    @ResponseStatus(value = OK)
+    @ResponseBody
+    public List<DatedPresenceItem> readByChildId(@PathVariable("id") long childId) {
+        return attendanceService.readByChildId(childId);
+    }
+
     @RequestMapping(value = "/attendance/class/{id}", method = GET)
     @ResponseStatus(value = OK)
     @ResponseBody
-    public List<AttendanceReport> readById(@PathVariable("id") long classId) {
+    public List<AttendanceReport> readByClassId(@PathVariable("id") long classId) {
         return attendanceService.readByClassId(classId);
     }
 

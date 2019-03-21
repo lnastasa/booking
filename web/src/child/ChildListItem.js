@@ -5,10 +5,11 @@ export default class ChildListItem extends Component {
 
     render() {
       return (
-          <div>
-            <Link to={{
+          <div class="row col-12">
+            <span class="col-6"><Link to={{
                 pathname:'/child/' + this.props.child.id
-            }}>{this.props.child.firstName} {this.props.child.lastName}</Link>
+                }}>{this.props.child.firstName} {this.props.child.lastName}</Link>
+            </span>
           </div>
     );
   }

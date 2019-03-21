@@ -62,9 +62,6 @@ export default class AdministratorHome extends Component {
                 </div>
 
                 <div class="row top-spacer-10">
-                    <h4>Children</h4>
-                </div>
-                <div class="row">
                     <div class="col-8">
                         <AllChildren />
                     </div>

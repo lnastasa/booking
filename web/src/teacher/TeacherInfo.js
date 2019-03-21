@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import renderLoadWait from '../common/loadUtil';
 
 export default class TeacherInfo extends Component {
 	
@@ -26,14 +27,17 @@ export default class TeacherInfo extends Component {
 
     render() {
         return (
-            <div>
-            	<div>Teacher Information</div>
+            <div id="component_root">
+                <div class="row page_label">
+                    <span class="display-4">Teacher Information</span>
+                </div>
                 {this.state.componentLoaded
                     ? 
-                    	<div>
-                    		<div>{this.state.teacher.firstName} {this.state.teacher.lastName}</div>
-                    	</div>
-                    : <div>'Loading ....'</div>
+                    	<div class="row col-12">
+                            <span class="col-6">Name</span>
+                            <span class="col-6">{this.state.teacher.firstName} {this.state.teacher.lastName}</span>
+                        </div>
+                    : renderLoadWait()
                 }
             </div>
         );
