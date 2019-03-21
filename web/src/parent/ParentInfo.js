@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import {Link} from 'react-router-dom';
 import ChildList from '../child/ChildList'
+import renderLoadWait from '../common/loadUtil';
 
 export default class ParentInfo extends Component {
 
@@ -40,28 +41,40 @@ export default class ParentInfo extends Component {
 
     render() {
         return (
-            <div>
-            	<div>Parent Information</div>
-                {this.state.parentInfoLoaded
+            <div id="component_root">
+                <div class="row page_label">
+                    <span class="display-4">Parent Information</span>
+                </div>
+                {this.state.parentInfoLoaded && this.state.childrenInfoLoaded
                     ?
-                        <div>
-                            <div>
-                                <div>{this.state.parent.firstName} {this.state.parent.lastName}</div>
-                            </div>
-                            <Link to={{
-                                pathname:'/createChild',
+                        <div class="row col-12">
+                            <div class="row col-12">
+                                <Link  class="btn btn-info" to={{
+                                    pathname:'/createChild',
                                     state : {
                                         user: this.state.user,
                                         parent: this.state.parent
                                     }
-                             }}>Create Child </Link>
+                                }}>Create Child </Link>
+                            </div>
+
+                            <div class="row col-12">
+                                <h5 class="display-5 top-spacer-10">Info</h5>
+                                <div class="row col-12">
+                                    <span class="col-6">Name</span>
+                                    <span class="col-6">{this.state.parent.firstName} {this.state.parent.lastName}</span>
+                                </div>
+                                <div class="row col-12">
+                                    <span class="col-6">Phone number</span>
+                                    <span class="col-6">{this.state.parent.phoneNumber}</span>
+                                </div>
+                            </div>
+
+                            <div class="row col-12">
+                                <ChildList children={this.state.children}/>
+                            </div>
                         </div>
-                    : <div>'Loading ....'</div>
-                }
-                {this.state.childrenInfoLoaded
-                    ?
-                      <ChildList children={this.state.children}/>
-                    : <div>'Loading ....'</div>
+                    : renderLoadWait()
                 }
             </div>
         );

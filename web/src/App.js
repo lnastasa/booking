@@ -23,10 +23,13 @@ import TakeAttendance from './classes/TakeAttendance';
 import CompleteRegistration from './register/CompleteRegistration'
 import AttendanceReportInfo from "./attendance/AttendanceReportInfo";
 
+import HealthCheck from './health/HealthCheck'
+
 const App = () => (
-    <div>
+    <div class="row col-12">
         <Router>
-            <div>
+            <div class="row col-12">
+                <HealthCheck/>
                 <Route exact path="/" component={Login} />
 
                 <Route exact path="/admin" component={AdministratorHome} />

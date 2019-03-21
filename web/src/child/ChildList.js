@@ -5,21 +5,20 @@ export default class ChildList extends Component {
 
     render() {
         return (
-            <div class="row">
+            <div class="row col-12">
+                <h5 class="display-5 top-spacer-10">Children</h5>
                 {
                     this.props.children.length === 0
                     ?
                         <div class="col-6 col-offset-2 alert alert-warning" role="alert">No children in list</div>
                     :
-                        <ul>
+                        <div class="row col-12">
                             {
                                 this.props.children.map(function (child, index) {
-                                    return <li>
-                                        <ChildListItem child={child}/>
-                                    </li>;
+                                    return <ChildListItem child={child}/>
                                 })
                             }
-                        </ul>
+                        </div>
                 }
             </div>
         );

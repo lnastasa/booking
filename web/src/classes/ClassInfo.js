@@ -4,6 +4,7 @@ import ChildList from '../child/ChildList'
 import { Navigation } from 'react-router'
 import {Link} from 'react-router-dom';
 import AttendanceReportList from '../attendance/AttendanceReportList';
+import renderLoadWait from '../common/loadUtil';
 
 export default class ClassInfo extends Component {
 
@@ -60,24 +61,42 @@ export default class ClassInfo extends Component {
 
     render() {
         return (
-            <div>
-            	<div>Class Info</div>
+            <div id="component_root">
+                <div class="row page_label">
+                    <span class="display-4">Class Info</span>
+                </div>
                 {this.props.location.state !== undefined && this.props.location.state.message !== undefined
-                    ? <div class="row"><div class="alert alert-success col-6" role="alert">{this.props.location.state.message}</div></div>
+                    ? <div class="alert alert-success col-6" role="alert">{this.props.location.state.message}</div>
                     : null
                 }
                 {this.state.classLoaded && this.state.teacherLoaded && this.state.childrenLoaded && this.state.attendanceLoaded
                     ?
-                        <div>
-                            <div>Name : &nbsp; {this.state.class.name}</div>
-                            <div>Teacher : &nbsp; {this.state.teacher.firstName} {this.state.teacher.lastName}</div>
+                        <div class="row col-12">
+
+                            <div class="row col-12">
+                                <Link  class="btn btn-info" to={{
+                                    pathname:'/attendance/' + this.state.class.id
+                                }}>Take Attendance</Link>
+                            </div>
+
+                            <div class="row col-12 top-spacer-10">
+                                <div class="row col-12">
+                                    <h5 class="display-5">Info</h5>
+                                </div>
+                                <span class="col-6">Name</span>
+                                <span class="col-6">{this.state.class.name}</span>
+                            </div>
+
+                            <div class="row col-12">
+                                <span class="col-6">Teacher</span>
+                                <span class="col-6">{this.state.teacher.firstName} {this.state.teacher.lastName}</span>
+                            </div>
+
                             <ChildList children={this.state.children}/>
+
                             <AttendanceReportList attendanceReports={this.state.attendanceReports}/>
-                             <Link to={{
-                               pathname:'/attendance/' + this.state.class.id
-                            }}>Take Attendance</Link>
                         </div>
-                    : <div>'Loading ....'</div>
+                    : renderLoadWait()
                 }
             </div>
         );

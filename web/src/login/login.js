@@ -80,13 +80,13 @@ export default class Login extends Component {
 
     render() {
         return (
-            <div id="login_root" class="jumbotron">
+            <div class="jumbotron row col-10 offset-2">
                 {this.state.message !== undefined
                     ? <div class="alert alert-primary" role="alert">{this.state.message}</div>
                     : null
                 }
 
-                <form class="center-block" onSubmit={this.handleSubmit}>
+                <form class="row col-12" onSubmit={this.handleSubmit}>
 
                     {this.state.loginFailed
                         ? <div class="alert alert-danger" role="alert">Email or Password is incorrect</div>
@@ -97,8 +97,8 @@ export default class Login extends Component {
                     : null
                     }
 
-                    <div class="row">
-                        <label class="col-3">Email:</label>
+                    <div class="row col-12">
+                        <label class="col-2">Email:</label>
                         <input class="col-8" type="text" name="email" onChange={this.handleInputChange} />
                     </div>
 
@@ -107,12 +107,12 @@ export default class Login extends Component {
                     : null
                     }
 
-                    <div class="row">
-                        <label class="col-3">Password:</label>
+                    <div class="row col-12">
+                        <label class="col-2">Password:</label>
                         <input class="col-8" type="password" name="password" onChange={this.handleInputChange} />
                     </div>
-                    <div class="row">
-                        <div class="col-3">&nbsp;</div>
+                    <div class="row col-12 top-spacer-10">
+                        <div class="col-2">&nbsp;</div>
                         <input class="col-2 btn btn-info" type="submit" value="Login"  />
                     </div>
                 </form>

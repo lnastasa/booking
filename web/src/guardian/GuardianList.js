@@ -5,11 +5,15 @@ export default class GuardianList extends Component {
 
     render() {
         return (
-            <div>
+            <div class="row col-12">
                 {
                     this.props.guardians.length === 0
                     ?
-                        null
+                        <div class="row col-12">
+                            <span class="col-6">
+                                No guardians assigned
+                            </span>
+                        </div>
                     :
                         <ul>
                             {
