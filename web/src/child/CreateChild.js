@@ -19,7 +19,6 @@ export default class CreateChild extends Component {
 
             firstNameEmpty: false,
             lastNameEmpty: false,
-            dateOfBirthEmpty: false,
 
             createFailed: false
         };
@@ -32,27 +31,20 @@ export default class CreateChild extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        if (this.state.firstName === undefined) {
+        if (this.state.firstName === '') {
             this.setState({firstNameEmpty: true});
         } else {
             this.setState({firstNameEmpty: false});
         }
 
-        if (this.state.lastName === undefined) {
+        if (this.state.lastName === '') {
             this.setState({lastNameEmpty: true});
         } else {
             this.setState({lastNameEmpty: false});
         }
 
-        if (this.state.dateOfBirth === undefined) {
-            this.setState({dateOfBirthEmpty: true});
-        } else {
-            this.setState({dateOfBirthEmpty: false});
-        }
-
-        if (this.state.firstName !== undefined
-                    && this.state.lastName !== undefined
-                    && this.state.dateOfBirth !== undefined) {
+        if (this.state.firstName !== ''
+                    && this.state.lastName !== '') {
             axios.post('http://localhost:8080/childs',
                 {
                     firstName: this.state.firstName,
@@ -88,40 +80,44 @@ export default class CreateChild extends Component {
 
     render() {
         return (
-            <div>
-                <div>Create Child for {this.state.parent.firstName} {this.state.parent.lastName}</div>
-
-                {this.state.firstNameEmpty
-                    ? <div>First Name must not be empty</div>
-                    : null
-                }
-                {this.state.lastNameEmpty
-                    ? <div>Last Name must not be empty</div>
-                    : null
-                }
-                {this.state.dateOfBirthEmpty
-                    ? <div>Date of Birth must not be empty</div>
-                    : null
-                }
-                {this.state.createFailed
-                    ? <div>Unable to create child</div>
-                    : null
-                }
+            <div id="component_root" class="col-12">
+                <div class="row page_label">
+                    <span class="display-4">Create Child for {this.state.parent.firstName} {this.state.parent.lastName}</span>
+                </div>
 
                 <form onSubmit={this.handleSubmit}>
-                    <label>First Name:
-                        <input type="text" name="firstName" onChange={this.handleInputChange} />
-                    </label>
-                     <label>Last Name:
-                        <input type="text" name="lastName" onChange={this.handleInputChange} />
-                    </label>
-                    <label>Date of Birth:
-                        <DatePicker
-                                selected={this.state.dateOfBirthObject}
-                                onChange={this.handleChangeDate}
-                              />
-                    </label>
-                  <input type="submit" value="Create"  />
+
+                    {this.state.firstNameEmpty
+                        ? <div class="alert alert-danger col-4" role="alert">First Name must not be empty</div>
+                        : null
+                    }
+                    <div class="row">
+                        <label class="col-3">First Name</label>
+                        <input class="col-5" type="text" name="firstName" onChange={this.handleInputChange} />
+                    </div>
+
+                    {this.state.lastNameEmpty
+                        ? <div class="alert alert-danger col-4" role="alert">Last Name must not be empty</div>
+                        : null
+                    }
+                    <div class="row">
+                        <label class="col-3">Last Name</label>
+                        <input class="col-5" type="text" name="lastName" onChange={this.handleInputChange} />
+                    </div>
+
+                    <div class="row">
+                        <label class="col-3">Date of Birth</label>
+                        <DatePicker class="col-5" selected={this.state.dateOfBirthObject} onChange={this.handleChangeDate}/>
+                    </div>
+
+                    {this.state.createFailed
+                        ? <div class="alert alert-danger col-4" role="alert">Unable to create child</div>
+                        : null
+                    }
+                    <div class="row">
+                        <div class="col-3">&nbsp;</div>
+                        <input class="col-2 btn btn-info" type="submit" value="Create" />
+                    </div>
                 </form>
             </div>
         )

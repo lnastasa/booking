@@ -88,7 +88,7 @@ export default class CreateTeacher extends Component {
 
     render() {
         return (
-            <div id="component_root">
+            <div id="component_root" class="col-12">
                 <div class="row page_label">
                     <span class="display-4">Create Teacher</span>
                 </div>

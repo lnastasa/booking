@@ -17,7 +17,7 @@ public class ChildService {
         return childDao.create(child);
     }
 
-    public List<Child> readByParentId(int parentId) {
+    public List<Child> readByParentId(long parentId) {
         if (parentId == 0) {
             return childDao.readAll();
         }

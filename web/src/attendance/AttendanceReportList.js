@@ -5,12 +5,12 @@ export default class AttendanceReportList extends Component {
 
     render() {
         return (
-            <div class="row ">
+            <div class="row col-12">
                 <h5 class="display-5 top-spacer-10">Attendance Report</h5>
                 {
                     this.props.attendanceReports.length === 0
                         ?
-                        <div class="col-6 col-offset-2 alert alert-warning" role="alert">No attendance reports</div>
+                        <div class="row col-12 alert alert-warning" role="alert">No attendance reports</div>
                         :
                         <div class="row col-12">
                             {

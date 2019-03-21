@@ -116,52 +116,67 @@ export default class CreateClass extends Component {
 
      render() {
         return (
-            <div>
-                <div>Create Class</div>
-                <div>
-                    { this.state.teachersLoaded && this.state.childrenLoaded
-                    ?
-                   <div>
-                       {this.state.createFailed
-                              ? <div>Unable to create class</div>
-                              : null
-                        }
-                        {this.state.nameEmpty
-                            ? <div>Name must not be empty</div>
-                            : null
-                        }
-                        {this.state.teacherNotSelected
-                            ? <div>A teacher must be selected</div>
-                            : null
-                        }
-                        {this.state.classEmpty
-                            ? <div>Please add children to the class</div>
-                            : null
-                        }
-
-                        <form onSubmit={this.handleSubmit}>
-                            <label>Class Name:
-                                <input type="text" name="name" onChange={this.handleInputChange} />
-                            </label>
-                            <label>Teacher:
-                                <select name="teacherId" onChange={this.handleInputChange} >
-                                    <option selected disabled> Please Select a teacher</option>
-                                    {this.state.teacherList.map(function (teacher, index) {
-                                        return <option value={teacher.id}>{teacher.firstName} {teacher.lastName}</option>
-                                    })}
-                                </select>
-                            </label>
-                            Children:
-                                {this.state.childList.map(function (child, index) {
-                                    return <label><input type="checkbox" name="child.{child.id}" value={child.id} onChange={this.handleRadioInputChange.bind(this)} />{child.firstName} {child.lastName} <br/></label>;
-                                }, this)}
-                            <input type="submit" value="Create"  />
-                        </form>
-                    </div>
-                    :
-                    <div>'Loading ....'</div>
-                    }
+            <div id="component_root" class="col-12">
+                <div class="row page_label">
+                    <span class="display-4">Create Class</span>
                 </div>
+
+
+                { this.state.teachersLoaded && this.state.childrenLoaded
+                ?
+                   <form onSubmit={this.handleSubmit}>
+
+                       {this.state.nameEmpty
+                           ? <div>Name must not be empty</div>
+                           : null
+                       }
+                       <div class="row">
+                            <label class="col-3">Class Name</label>
+                            <input class="col-5" type="text" name="name" onChange={this.handleInputChange} />
+                       </div>
+
+                       {this.state.teacherNotSelected
+                           ? <div>A teacher must be selected</div>
+                           : null
+                       }
+                       <div class="row">
+                            <label class="col-3">Teacher</label>
+                            <select class="col-5"  name="teacherId" onChange={this.handleInputChange} >
+                                <option selected disabled> Please Select a teacher</option>
+                                {this.state.teacherList.map(function (teacher, index) {
+                                    return <option value={teacher.id}>{teacher.firstName} {teacher.lastName}</option>
+                                })}
+                            </select>
+                       </div>
+
+
+                       {this.state.classEmpty
+                           ? <div>Please add children to the class</div>
+                           : null
+                       }
+                       <div class="row">
+                           <label class="col-3">Children</label>
+                           <div class="col-5">
+                                {this.state.childList.map(function (child, index) {
+                                    return <div class="row col-12"><label><input type="checkbox" name="child.{child.id}" value={child.id} onChange={this.handleRadioInputChange.bind(this)} />&nbsp;{child.firstName +' '+child.lastName} </label></div>;
+                                }, this)}
+                           </div>
+                       </div>
+
+                       {this.state.createFailed
+                           ? <div>Unable to create class</div>
+                           : null
+                       }
+                       <div class="row">
+                           <div class="col-3">&nbsp;</div>
+                           <input class="col-2 btn btn-info" type="submit" value="Create"/>
+                       </div>
+                    </form>
+
+                :
+                <div>'Loading ....'</div>
+                }
+
             </div>
         )
     }

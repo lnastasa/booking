@@ -29,7 +29,7 @@ public class ChildResource {
     @RequestMapping(value = "/childs", method = GET)
     @ResponseStatus(value = OK)
     @ResponseBody
-    public List<Child> readByParentId(@RequestParam("parentId") int parentId) {
+    public List<Child> readByParentId(@RequestParam("parentId") long parentId) {
         return childService.readByParentId(parentId);
     }
 

@@ -90,44 +90,56 @@ export default class CreateParent extends Component {
 
     render() {
         return (
-            <div>
-                <div>Create Parent</div>
-
-                {this.state.firstNameEmpty
-                    ? <div>First Name must not be empty</div>
-                    : null
-                }
-                {this.state.lastNameEmpty
-                    ? <div>Last Name must not be empty</div>
-                    : null
-                }
-                {this.state.phoneNumberEmpty
-                    ? <div>Phone Number must not be empty</div>
-                    : null
-                }
-                {this.state.emailEmpty
-                    ? <div>Email must not be empty</div>
-                    : null
-                }
-                {this.state.createFailed
-                    ? <div>Unable to create parent</div>
-                    : null
-                }
+            <div id="component_root" class="col-12">
+                <div class="row page_label">
+                    <span class="display-4">Create Parent</span>
+                </div>
 
                 <form onSubmit={this.handleSubmit}>
-                    <label>First Name:
-                        <input type="text" name="firstName" onChange={this.handleInputChange} />
-                    </label>
-                     <label>Last Name:
-                        <input type="text" name="lastName" onChange={this.handleInputChange} />
-                    </label>
-                    <label>Email:
-                        <input type="text" name="email" onChange={this.handleInputChange} />
-                    </label>
-                    <label>Phone Number:
-                        <input type="text" name="phoneNumber" onChange={this.handleInputChange} />
-                    </label>
-                  <input type="submit" value="Create"  />
+                    {this.state.firstNameEmpty
+                        ? <div class="alert alert-danger col-4" role="alert">First Name must not be empty</div>
+                        : null
+                    }
+                    <div class="row">
+                        <label class="col-3">First Name</label>
+                        <input class="col-5" type="text" name="firstName" onChange={this.handleInputChange} />
+                    </div>
+
+                    {this.state.lastNameEmpty
+                        ? <div class="alert alert-danger col-4" role="alert">Last Name must not be empty</div>
+                        : null
+                    }
+                    <div class="row">
+                        <label class="col-3">Last Name</label>
+                        <input class="col-5" type="text" name="lastName" onChange={this.handleInputChange} />
+                    </div>
+
+                    {this.state.emailEmpty
+                        ? <div class="alert alert-danger col-4" role="alert">Email must not be empty</div>
+                        : null
+                    }
+                    <div class="row">
+                        <label class="col-3">Email</label>
+                        <input class="col-5" type="text" name="email" onChange={this.handleInputChange} />
+                    </div>
+
+                    {this.state.phoneNumberEmpty
+                        ? <div class="alert alert-danger col-4" role="alert">Phone Number must not be empty</div>
+                        : null
+                    }
+                    <div class="row">
+                        <label class="col-3">Phone Number</label>
+                        <input class="col-5" type="text" name="phoneNumber" onChange={this.handleInputChange} />
+                    </div>
+
+                    {this.state.createFailed
+                        ? <div class="alert alert-danger col-4" role="alert">Unable to create parent</div>
+                        : null
+                    }
+                    <div class="row">
+                        <div class="col-3">&nbsp;</div>
+                        <input class="col-2 btn btn-info" type="submit" value="Create"/>
+                    </div>
                 </form>
             </div>
         )

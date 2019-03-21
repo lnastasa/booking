@@ -40,7 +40,7 @@ public class ChildDao {
         return child;
     }
 
-    public List<Child> readByParentId(int parentId) {
+    public List<Child> readByParentId(long parentId) {
         String sql = String.format("select * from childs where parent_id = %s;", parentId);
         return jdbc.query(sql, new BeanPropertyRowMapper<>(Child.class));
     }

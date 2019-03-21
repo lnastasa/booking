@@ -5,7 +5,7 @@ export default class ClassList extends Component {
 
     render() {
         return (
-            <div class="row">
+            <div class="row col-12">
                 {
                     this.props.classes.length === 0
                     ?

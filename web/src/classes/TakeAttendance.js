@@ -74,18 +74,21 @@ export default class TakeAttendance extends Component {
 
     render() {
         return (
-            <div id="component_root">
+            <div id="component_root" class="col-12">
+
                 <div class="row page_label">
                     <span class="display-4">Take Attendance</span>
                 </div>
+
                 {this.state.createFailed
                     ? <div class="alert alert-danger col-4" role="alert">Unable to save attendance report</div>
                     : null
                 }
                 <div class="row">
-                {this.state.childrenLoaded ? this.renderAttendanceReport() : renderLoadWait() }
-            </div>
-                <div class="row">
+                    {this.state.childrenLoaded ? this.renderAttendanceReport() : renderLoadWait() }
+                </div>
+
+                <div class="row top-spacer-10">
                     <button class="btn btn-info" type="button"
                         onClick={() => this.submitAttendance()}
                     >Submit</button>
@@ -99,11 +102,11 @@ export default class TakeAttendance extends Component {
             this.state.attendanceReport.map(function (attendanceRecord) {
                 var child = this.getChild(attendanceRecord.childId)
                 return <div
-                    class={'attendance_record_row_' + attendanceRecord.present}
+                    class={'row col-7 attendance_record_row_' + attendanceRecord.present}
                     onClick={() => this.toggleAttendance(attendanceRecord.childId)}
                 >
-                    <span class="col-2">{child.firstName} </span>
-                    <span class="col-2">{child.lastName} </span>
+                    <span class="col-4">{child.firstName} </span>
+                    <span class="col-4">{child.lastName} </span>
                     <span class="col-2">
                         {attendanceRecord.present ? 'Present' : 'Absent'}
                     </span>

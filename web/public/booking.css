@@ -4,11 +4,11 @@
 }
 
 .attendance_record_row_true {
-    background-color: red;
+    background-color: #41f4bb;
 }
 
 .attendance_record_row_false {
-    background-color: blue;
+    background-color: #f4427a;
 }
 
 .page_label {
