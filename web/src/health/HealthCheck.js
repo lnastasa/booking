@@ -12,7 +12,7 @@ export default class HealthCheck extends Component {
     }
 
     componentDidMount() {
-        setInterval(this.checkState, 5000);
+        //setInterval(this.checkState, 5000);
     }
 
     checkState() {

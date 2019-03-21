@@ -2,6 +2,5 @@
 *\target
 *\target\*
 *\*.iml
-web\.idea/
-server/.idea
-¸
+web\.idea/*
+server/.idea/*
