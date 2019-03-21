@@ -36,7 +36,7 @@ public class GuardiansDao {
     public Guardian create(Guardian guardian) {
         SqlParameterSource parameters = new BeanPropertySqlParameterSource(guardian);
         KeyHolder keyHolder = insert.executeAndReturnKeyHolder(parameters);
-        guardian.setId((Long) keyHolder.getKey());
+        guardian.setId(keyHolder.getKey().longValue());
         return guardian;
     }
 

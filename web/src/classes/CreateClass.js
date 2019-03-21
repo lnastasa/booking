@@ -137,7 +137,7 @@ export default class CreateClass extends Component {
                         {this.state.classEmpty
                             ? <div>Please add children to the class</div>
                             : null
-                        }s
+                        }
 
                         <form onSubmit={this.handleSubmit}>
                             <label>Class Name:
