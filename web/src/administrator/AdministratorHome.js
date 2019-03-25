@@ -4,24 +4,19 @@ import {Link} from 'react-router-dom';
 import Users from '../user/Users';
 import AllChildren from '../child/AllChildren';
 import AllClasses from '../classes/AllClasses';
+import NavBar from '../common/navbar'
 
 export default class AdministratorHome extends Component {
 
     mixins: [Navigation];
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            user: this.props.location.state.user,
-            message: this.props.location.state.message
-        };
-    }
-
     render() {
         return (
             <div id="component_root" class="col-12">
+                <NavBar/>
 
-                {this.props.location.state.message !== undefined
+                {this.props.location.state !== undefined
+                    && this.props.location.state.message !== undefined
                     ? <div class="row"><div class="alert alert-success col-6" role="alert">{this.props.location.state.message}</div></div>
                     : null
                 }
@@ -62,9 +57,7 @@ export default class AdministratorHome extends Component {
                 </div>
 
                 <div class="row top-spacer-10">
-                    <div class="col-12">
-                        <AllChildren />
-                    </div>
+                    <AllChildren />
                 </div>
 
                 <div class="row top-spacer-10">

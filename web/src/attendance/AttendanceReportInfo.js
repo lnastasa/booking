@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import moment from 'moment'
 import renderLoadWait from '../common/loadUtil';
+import NavBar from '../common/navbar'
 
 export default class AttendanceReportInfo extends Component {
 
@@ -49,6 +50,7 @@ export default class AttendanceReportInfo extends Component {
     render() {
         return (
             <div class="component_root col-12">
+                <NavBar/>
                 <div class="row page_label">
                     <span class="display-4">Attendance Report</span>
                 </div>
@@ -56,10 +58,14 @@ export default class AttendanceReportInfo extends Component {
                 this.state.reportLoaded && this.state.childrenLoaded ?
                     <div class="row col-12">
                         <div class="row col-12">
-                        <div class="row col-12">
-                            <span class="col-6">Date</span>
-                            <span class="col-6">{moment.unix(this.state.report.timestamp).format('DD/MM/YYYY')}</span>
+                            <div class="row col-12">
+                                <span class="col-6">Date</span>
+                                <span class="col-6">{moment.unix(this.state.report.timestamp).format('DD/MM/YYYY')}</span>
+                            </div>
                         </div>
+
+                        <div class="row col-12 top-spacer-10">
+                            <h5 class="col-12 top-spacer-10">Children</h5>
                         </div>
                         <div class="row col-12">
                             {

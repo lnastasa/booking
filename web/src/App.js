@@ -32,7 +32,7 @@ const App = () => (
                 <HealthCheck/>
                 <Route exact path="/" component={Login} />
 
-                <Route exact path="/admin" component={AdministratorHome} />
+                <Route exact path="/administrator" component={AdministratorHome} />
                 <Route exact path="/teacher" component={TeacherHome} />
                 <Route exact path="/parent" component={ParentHome} />
 

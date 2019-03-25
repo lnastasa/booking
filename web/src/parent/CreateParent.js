@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Navigation } from 'react-router'
 import axios from 'axios'
+import NavBar from '../common/navbar'
 
 export default class CreateParent extends Component {
 
@@ -13,17 +14,16 @@ export default class CreateParent extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
 
-        // Inputs
-        this.state = {firstName: ''};
-        this.state = {lastName: ''};
-        this.state = {phoneNumber: ''};
-        this.state = {email: ''};
-
         // Error flags
         this.state = {
+            firstName: '',
+            lastName: '',
+            phoneNumber: '',
+            email: '',
+
             firstNameEmpty: false,
             lastNameEmpty: false,
-            phoneNumber: false,
+            phoneNumberEmpty: false,
             emailEmpty: false,
             createFailed: false
         };
@@ -32,34 +32,34 @@ export default class CreateParent extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        if (this.state.firstName === undefined) {
+        if (this.state.firstName === '') {
            this.setState({firstNameEmpty: true});
        } else {
             this.setState({firstNameEmpty: false});
        }
 
-        if (this.state.lastName === undefined) {
+        if (this.state.lastName === '') {
               this.setState({lastNameEmpty: true});
           } else {
                this.setState({lastNameEmpty: false});
           }
 
-      if (this.state.phoneNumber === undefined) {
+        if (this.state.phoneNumber === '') {
             this.setState({phoneNumberEmpty: true});
         } else {
              this.setState({phoneNumberEmpty: false});
         }
 
-      if (this.state.email === undefined) {
+      if (this.state.email === '') {
             this.setState({emailEmpty: true});
         } else {
              this.setState({emailEmpty: false});
         }
 
-      if (this.state.firstName !== undefined
-            && this.state.lastName !== undefined
-            && this.state.phoneNumber !== undefined
-            && this.state.email !== undefined) {
+      if (this.state.firstName !== ''
+            && this.state.lastName !== ''
+            && this.state.phoneNumber !== ''
+            && this.state.email !== '') {
 
         axios.post('http://localhost:8080/users',
             {
@@ -91,6 +91,7 @@ export default class CreateParent extends Component {
     render() {
         return (
             <div id="component_root" class="col-12">
+                <NavBar/>
                 <div class="row page_label">
                     <span class="display-4">Create Parent</span>
                 </div>

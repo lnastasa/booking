@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Navigation } from 'react-router'
+import store from "../js/store/index";
+import {login} from '../js/actions/index';
 
 export default class Login extends Component {
 
@@ -8,6 +10,8 @@ export default class Login extends Component {
 
     constructor(props) {
         super(props);
+
+        window.store = store;
 
         this.state = {
             email: '',
@@ -47,23 +51,22 @@ export default class Login extends Component {
                 })
                 .then(response => {
                     var user = response.data;
+                    store.dispatch(login(user));
+
                     this.setState({user: user});
                     if (user.type === 'ADMINISTRATOR') {
                         this.props.history.push({
-                           pathname:'/admin',
-                           state : { user: user }
+                           pathname:'/administrator'
                         })
                     }
                     if (user.type === 'TEACHER') {
                         this.props.history.push({
-                           pathname:'/teacher',
-                           state : { user: user }
+                           pathname:'/teacher'
                         })
                     }
                     if (user.type === 'PARENT') {
                         this.props.history.push({
-                           pathname:'/parent',
-                           state : { user: user }
+                           pathname:'/parent'
                         })
                     }
                 }).catch(error => {

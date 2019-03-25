@@ -92,8 +92,8 @@ export default class CompleteRegistration extends Component {
                         : null
                      }
                     <div class="row">
-                        <label class="col-3">Password</label>
-                        <input class="col-5" type="password" name="password" onChange={this.handleInputChange} />
+                        <label class="col-5">Password</label>
+                        <input class="col-6" type="password" name="password" onChange={this.handleInputChange} />
                     </div>
 
                      {this.state.passwordConfirmEmpty
@@ -101,8 +101,8 @@ export default class CompleteRegistration extends Component {
                          : null
                      }
                     <div class="row">
-                        <label class="col-3">Confirm Password</label>
-                        <input class="col-5" type="password" name="passwordConfirm" onChange={this.handleInputChange} />
+                        <label class="col-5">Confirm Password</label>
+                        <input class="col-6" type="password" name="passwordConfirm" onChange={this.handleInputChange} />
                     </div>
 
                      {this.state.passwordMismatch
@@ -110,6 +110,7 @@ export default class CompleteRegistration extends Component {
                         : null
                      }
                      <div class="row">
+                         <div class="col-5">&nbsp;</div>
                         <input class="col-2 btn btn-info" type="submit" value="Register"/>
                      </div>
                 </form>

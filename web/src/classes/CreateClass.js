@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import NavBar from '../common/navbar'
 
 export default class CreateClass extends Component {
 
@@ -81,6 +82,7 @@ export default class CreateClass extends Component {
         if (this.state.nameEmpty === false
             && this.state.teacherNotSelected === false
             && this.state.classEmpty === false) {
+
             axios.post('http://localhost:8080/classes',
             {
                 name: this.state.name,
@@ -117,6 +119,7 @@ export default class CreateClass extends Component {
      render() {
         return (
             <div id="component_root" class="col-12">
+                <NavBar/>
                 <div class="row page_label">
                     <span class="display-4">Create Class</span>
                 </div>
@@ -127,7 +130,7 @@ export default class CreateClass extends Component {
                    <form onSubmit={this.handleSubmit}>
 
                        {this.state.nameEmpty
-                           ? <div>Name must not be empty</div>
+                           ? <div class="alert alert-danger col-4" role="alert">Name must not be empty</div>
                            : null
                        }
                        <div class="row">
@@ -136,7 +139,7 @@ export default class CreateClass extends Component {
                        </div>
 
                        {this.state.teacherNotSelected
-                           ? <div>A teacher must be selected</div>
+                           ? <div class="alert alert-danger col-4" role="alert">A teacher must be selected</div>
                            : null
                        }
                        <div class="row">
@@ -151,7 +154,7 @@ export default class CreateClass extends Component {
 
 
                        {this.state.classEmpty
-                           ? <div>Please add children to the class</div>
+                           ? <div class="alert alert-danger col-4" role="alert">Please add children to the class</div>
                            : null
                        }
                        <div class="row">
@@ -164,7 +167,7 @@ export default class CreateClass extends Component {
                        </div>
 
                        {this.state.createFailed
-                           ? <div>Unable to create class</div>
+                           ? <div class="alert alert-danger col-4" role="alert">Unable to create class</div>
                            : null
                        }
                        <div class="row">

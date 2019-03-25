@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Navigation } from 'react-router'
 import axios from 'axios'
+import NavBar from '../common/navbar'
 
 export default class CreateTeacher extends Component {
 
@@ -89,6 +90,7 @@ export default class CreateTeacher extends Component {
     render() {
         return (
             <div id="component_root" class="col-12">
+                <NavBar/>
                 <div class="row page_label">
                     <span class="display-4">Create Teacher</span>
                 </div>

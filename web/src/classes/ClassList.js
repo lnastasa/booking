@@ -11,15 +11,13 @@ export default class ClassList extends Component {
                     ?
                         <div class="col-6 col-offset-2 alert alert-warning" role="alert">Class list is empty</div>
                     :
-                        <ul>
+                        <div class="row col-12">
                             {
                                 this.props.classes.map(function (clazz, index) {
-                                    return <li>
-                                        <ClassListItem class={clazz}/>
-                                    </li>;
+                                    return <ClassListItem class={clazz} />
                                 })
                             }
-                        </ul>
+                        </div>
                 }
             </div>
         );

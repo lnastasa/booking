@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios/index";
 import renderLoadWait from '../common/loadUtil';
 import ChildList from '../child/ChildList'
+import NavBar from '../common/navbar'
 
 export default class ParentHome extends Component {
 
@@ -9,7 +10,7 @@ export default class ParentHome extends Component {
         super(props);
         this.state = {
             childrenLoaded : false,
-            user: this.props.location.state.user
+            user: window.store.getState().user
         };
     }
 
@@ -30,16 +31,15 @@ export default class ParentHome extends Component {
 
     render() {
         return (
-            <div class="row">
-            {
+            <div id="component_root" class="col-12">
+                <NavBar/>
+                {
                 this.state.childrenLoaded ?
-                    <div id="component_root" class="row col-12">
-                        <div class="row col-12 page_label">
-                            <span class="row col-12 display-4">Parent Home</span>
+                    <div class="row col-12">
+                        <div class="row page_label">
+                            <span class="display-4">Parent Home</span>
                         </div>
-                        <div class="row col-12 top-spacer-10">
-                            <h4>My Children</h4>
-                        </div>
+
                         <ChildList children={this.state.children}/>
                     </div>
                 :

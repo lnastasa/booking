@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import renderLoadWait from '../common/loadUtil';
+import NavBar from '../common/navbar'
 
 export default class TeacherInfo extends Component {
 	
@@ -28,6 +29,7 @@ export default class TeacherInfo extends Component {
     render() {
         return (
             <div id="component_root">
+                <NavBar/>
                 <div class="row page_label">
                     <span class="display-4">Teacher Information</span>
                 </div>

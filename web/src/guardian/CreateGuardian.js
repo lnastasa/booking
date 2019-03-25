@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Navigation } from 'react-router'
+import NavBar from '../common/navbar'
 
 export default class CreateGuardian extends Component {
 
@@ -36,20 +37,20 @@ export default class CreateGuardian extends Component {
      handleSubmit(event) {
         event.preventDefault();
 
-        if (this.state.firstName === undefined) {
+        if (this.state.firstName === '') {
            this.setState({firstNameEmpty: true});
        } else {
             this.setState({firstNameEmpty: false});
        }
 
-        if (this.state.lastName === undefined) {
+        if (this.state.lastName === '') {
               this.setState({lastNameEmpty: true});
           } else {
                this.setState({lastNameEmpty: false});
           }
 
-      if (this.state.firstName !== undefined
-            && this.state.lastName !== undefined) {
+      if (this.state.firstName !== ''
+            && this.state.lastName !== '') {
 
         axios.post('http://localhost:8080/guardians',
             {
@@ -73,30 +74,41 @@ export default class CreateGuardian extends Component {
 
     render() {
         return (
-            <div>
-                <div>Create Guardian</div>
+            <div id="component_root" class="col-12">
+                <NavBar/>
 
-                {this.state.firstNameEmpty
-                    ? <div>First Name must not be empty</div>
-                    : null
-                }
-                {this.state.lastNameEmpty
-                    ? <div>Last Name must not be empty</div>
-                    : null
-                }
-                {this.state.createFailed
-                    ? <div>Unable to create guardian</div>
-                    : null
-                }
+                <div class="row page_label">
+                    <span class="display-4">Create Guardian</span>
+                </div>
 
                 <form onSubmit={this.handleSubmit}>
-                    <label>First Name:
-                        <input type="text" name="firstName" onChange={this.handleInputChange} />
-                    </label>
-                     <label>Last Name:
-                        <input type="text" name="lastName" onChange={this.handleInputChange} />
-                    </label>
-                  <input type="submit" value="Create" />
+
+                    {this.state.firstNameEmpty
+                        ? <div class="alert alert-danger col-4" role="alert">First Name must not be empty</div>
+                        : null
+                    }
+                    <div class="row">
+                        <label class="col-3">First Name</label>
+                        <input class="col-5"  type="text" name="firstName" onChange={this.handleInputChange} />
+                    </div>
+
+                    {this.state.lastNameEmpty
+                        ? <div class="alert alert-danger col-4" role="alert">Last Name must not be empty</div>
+                        : null
+                    }
+                    <div class="row">
+                        <label class="col-3">Last Name</label>
+                        <input class="col-5"  type="text" name="lastName" onChange={this.handleInputChange} />
+                    </div>
+
+                    {this.state.createFailed
+                        ? <div class="alert alert-danger col-4" role="alert">Unable to create guardian</div>
+                        : null
+                    }
+                    <div class="row">
+                        <div class="col-3">&nbsp;</div>
+                        <input class="col-2 btn btn-info" type="submit" value="Create" />
+                    </div>
                 </form>
             </div>
         );

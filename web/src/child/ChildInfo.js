@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import GuardianList from '../guardian/GuardianList';
 import ChildAttendance from '../attendance/ChildAttendance';
 import renderLoadWait from '../common/loadUtil';
+import NavBar from '../common/navbar'
 
 export default class ChildInfo extends Component {
 
@@ -42,6 +43,7 @@ export default class ChildInfo extends Component {
     render() {
         return (
             <div id="component_root">
+                <NavBar/>
                 <div class="row page_label">
                     <span class="display-4">Child Info</span>
                 </div>

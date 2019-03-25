@@ -5,6 +5,7 @@ import { Navigation } from 'react-router'
 import {Link} from 'react-router-dom';
 import AttendanceReportList from '../attendance/AttendanceReportList';
 import renderLoadWait from '../common/loadUtil';
+import NavBar from '../common/navbar'
 
 export default class ClassInfo extends Component {
 
@@ -62,6 +63,7 @@ export default class ClassInfo extends Component {
     render() {
         return (
             <div id="component_root">
+                <NavBar/>
                 <div class="row page_label">
                     <span class="display-4">Class Info</span>
                 </div>

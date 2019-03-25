@@ -3,6 +3,7 @@ import axios from 'axios'
 import {Link} from 'react-router-dom';
 import ChildList from '../child/ChildList'
 import renderLoadWait from '../common/loadUtil';
+import NavBar from '../common/navbar'
 
 export default class ParentInfo extends Component {
 
@@ -42,6 +43,7 @@ export default class ParentInfo extends Component {
     render() {
         return (
             <div id="component_root">
+                <NavBar/>
                 <div class="row page_label">
                     <span class="display-4">Parent Information</span>
                 </div>

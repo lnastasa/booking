@@ -29,7 +29,7 @@ export default class AllClasses extends Component {
 
     render() {
         return (
-            <div>
+            <div class="row col-12">
                 {this.state.classInfoLoaded
                     ?
                       <ClassList classes={this.state.classes}/>

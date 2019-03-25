@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ClassList from '../classes/ClassList'
 import axios from 'axios'
 import renderLoadWait from '../common/loadUtil';
+import NavBar from '../common/navbar'
 
 export default class TeacherHome extends Component {
 
@@ -9,7 +10,7 @@ export default class TeacherHome extends Component {
         super(props);
         this.state = {
             classesLoaded : false,
-            user: this.props.location.state.user
+            user: window.store.getState().user
         };
     }
 
@@ -19,7 +20,7 @@ export default class TeacherHome extends Component {
 
      loadInfo = () => {
         let component  = this;
-        axios.get('http://localhost:8080/childs?parentId=' + this.state.user.id)
+        axios.get('http://localhost:8080/classes/teacher/' + this.state.user.id)
         .then(function (response) {
             component.setState({
                 classes: response.data,
@@ -30,20 +31,24 @@ export default class TeacherHome extends Component {
 
     render() {
         return (
-            <div id="component_root" class="row col-12">
-                <div class="row col-12 page_label">
+            <div id="component_root" class="col-12">
+                <NavBar/>
+
+                <div class="row page_label">
                     <span class="row col-12 display-4">Teacher Home</span>
                 </div>
-                <div class="row col-12 top-spacer-10">
-                    <h4>My Classes</h4>
+                <div class="row top-spacer-10">
+                    <h4>Classes</h4>
                 </div>
-                {this.state.classesLoaded
-                    ?
-                        <div class="row col-12">
-                            <ClassList classes={this.state.classes}/>
-                        </div>
-                    : renderLoadWait()
-                }
+
+                <div class="row">
+                    <div class="col-8">
+                        {this.state.classesLoaded
+                            ? <ClassList classes={this.state.classes}/>
+                            : renderLoadWait()
+                        }
+                    </div>
+                </div>
             </div>
         );
   }

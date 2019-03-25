@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import DatePicker from "react-datepicker";
 import axios from 'axios'
 import "react-datepicker/dist/react-datepicker.css";
+import NavBar from '../common/navbar'
 
 export default class CreateChild extends Component {
 
@@ -81,6 +82,7 @@ export default class CreateChild extends Component {
     render() {
         return (
             <div id="component_root" class="col-12">
+                <NavBar/>
                 <div class="row page_label">
                     <span class="display-4">Create Child for {this.state.parent.firstName} {this.state.parent.lastName}</span>
                 </div>

@@ -11,13 +11,13 @@ export default class UsersList extends Component {
                     ?
                         <div class="col-6 col-offset-2 alert alert-warning" role="alert"> No users provided</div>
                     :
-                        <ul>
+                        <div class="row col-12">
                             {
                                 this.props.users.map(function (user, index) {
-                                    return <li><UsersListItem user={user} /></li>;
+                                    return <UsersListItem user={user} />;
                                 })
                             }
-                        </ul>
+                        </div>
                 }
             </div>
         );
