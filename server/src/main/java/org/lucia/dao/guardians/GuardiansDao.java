@@ -1,5 +1,6 @@
 package org.lucia.dao.guardians;
 
+import org.lucia.model.childs.Child;
 import org.lucia.model.guardians.Guardian;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -40,8 +41,14 @@ public class GuardiansDao {
         return guardian;
     }
 
-    public List<Guardian> readByChildId(int childId) {
+    public List<Guardian> readByChildId(long childId) {
         String sql = String.format("select * from guardians where child_id = %s;", childId);
         return jdbc.query(sql, new BeanPropertyRowMapper<>(Guardian.class));
+    }
+
+    public Guardian readById(long id) {
+        return jdbc.queryForObject("select * from guardians where id = ?",
+                new Object[]{id},
+                new BeanPropertyRowMapper<>(Guardian.class));
     }
 }

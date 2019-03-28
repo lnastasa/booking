@@ -10,6 +10,10 @@ public class Guardian {
 
     private long childId;
 
+    public String getName() {
+        return getFirstName() + " " + getLastName();
+    }
+
     public long getId() {
         return id;
     }

@@ -17,7 +17,11 @@ public class GuardiansService {
         return guardiansDao.create(guardian);
     }
 
-    public List<Guardian> readByChildId(int childId) {
+    public List<Guardian> readByChildId(long childId) {
         return guardiansDao.readByChildId(childId);
+    }
+
+    public Guardian readById(long id) {
+        return guardiansDao.readById(id);
     }
 }

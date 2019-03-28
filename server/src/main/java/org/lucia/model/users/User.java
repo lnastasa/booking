@@ -16,6 +16,10 @@ public class User {
                 '}';
     }
 
+    public String getName() {
+        return getFirstName() + " " + getLastName();
+    }
+
     public Type getType() {
         return type;
     }

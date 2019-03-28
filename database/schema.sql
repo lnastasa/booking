@@ -71,3 +71,12 @@ CREATE TABLE `attendance_report_child` (
   `present` tinyint(1) NOT NULL,
   PRIMARY KEY (`attendance_report_id`,`child_id`)
 ); 
+
+CREATE TABLE `dismissal` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `child_id` bigint(20) NOT NULL,
+  `timestamp` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `guardian_id` bigint(20),
+  PRIMARY KEY (`id`)
+);    
