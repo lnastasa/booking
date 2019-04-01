@@ -31,11 +31,15 @@ export default class ChildAttendance extends Component {
 
     render() {
         return (
-            <div class="row col-12">
+            <div class="row col-12 top-spacer-10">
                 <h5 class="display-5 top-spacer-10">Attendance Report</h5>
                 {this.state.attendanceLoaded
                     ?
                     <div class="row col-12">
+                        <div class="row col-12">
+                            <span class="col-6 row_header">Date</span>
+                            <span class="col-6 row_header">Attendance</span>
+                        </div>
                         {
                             this.state.attendance.map(function (attendance, index) {
                                 return <div class="row col-12">

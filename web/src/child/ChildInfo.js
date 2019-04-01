@@ -60,7 +60,7 @@ export default class ChildInfo extends Component {
                             </div>
 
                     		<div class="row col-12 top-spacer-10">
-                                <div class="row col-12">
+                                <div class="row col-12 top-spacer-10">
                                     <h5 class="display-5">Info</h5>
                                 </div>
                                 <div class="row col-12">
@@ -73,6 +73,7 @@ export default class ChildInfo extends Component {
                                 </div>
                             </div>
 
+                            <div class="top-spacer-10">&nbsp;</div>
                             <div class="row col-12 top-spacer-10">
                                 <h5 class="display-5">Guardians</h5>
                                 <GuardianList guardians={this.state.guardians}/>

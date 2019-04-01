@@ -1,3 +1,8 @@
+.row_header {
+    font-weight: bold;
+    background-color: lightgray;
+}
+
 .alert{
     margin-bottom: 0px;
     margin-top: 10px;

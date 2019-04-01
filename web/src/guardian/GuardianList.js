@@ -15,15 +15,10 @@ export default class GuardianList extends Component {
                             </span>
                         </div>
                     :
-                        <ul>
-                            {
-                                this.props.guardians.map(function (guardian, index) {
-                                    return <li>
-                                        <GuardianListItem guardian={guardian}/>
-                                    </li>;
-                                })
-                            }
-                        </ul>
+                        this.props.guardians.map(function (guardian, index) {
+                            return <GuardianListItem guardian={guardian}/>
+
+                        })
                 }
             </div>
         );
