@@ -91,7 +91,7 @@ export default class CreateClass extends Component {
             })
             .then(response => {
                this.props.history.push({
-                  pathname:'/admin/',
+                  pathname:'/administrator',
                   state : {
                     message: 'Class created successfully'
                   }

@@ -4,6 +4,7 @@ import moment from 'moment'
 import {Link} from 'react-router-dom';
 import GuardianList from '../guardian/GuardianList';
 import ChildAttendance from '../attendance/ChildAttendance';
+import DismissalReport from '../attendance/DismissalReport';
 import renderLoadWait from '../common/loadUtil';
 import NavBar from '../common/navbar'
 
@@ -78,6 +79,9 @@ export default class ChildInfo extends Component {
                             </div>
 
                             <ChildAttendance childId={this.state.child.id}/>
+
+                            <DismissalReport childId={this.state.child.id}/>
+
                     	</div>
                     : renderLoadWait()
                 }

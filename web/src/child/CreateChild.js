@@ -55,7 +55,7 @@ export default class CreateChild extends Component {
                 })
                 .then(response => {
                    this.props.history.push({
-                      pathname:'/admin',
+                      pathname:'/administrator',
                       state : {
                         message: 'Child created successfully'
                       }

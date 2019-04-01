@@ -1,5 +1,6 @@
 package org.lucia.service.dismissal;
 
+import org.lucia.dao.dismissal.DismissalDao;
 import org.lucia.dao.users.UserDao;
 import org.lucia.gateway.SmsGateway;
 import org.lucia.model.childs.Child;
@@ -13,12 +14,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class DismissalService {
 
     private static final String DISMISSED_TO_PARENT = "Your child %s has been dismissed to their parent by %s";
     private static final String DISMISSED_TO_GUARDIAN = "Your child %s had been dismissed to their guardian %s by %s";
+
+    @Autowired
+    private DismissalDao dismissalDao;
 
     @Autowired
     private UserService userService;
@@ -46,6 +51,8 @@ public class DismissalService {
             guardian = guardiansService.readById(dismissal.getGuardianId());
         }
 
+        dismissal = dismissalDao.create(dismissal);
+
         String message;
         if(guardian == null) {
             message = String.format(DISMISSED_TO_PARENT, child.getFirstName(), dismissingUser.getName());
@@ -55,5 +62,9 @@ public class DismissalService {
 
         smsGateway.sendSms(parent.getPhoneNumber(), message);
         return dismissal;
+    }
+
+    public List<Dismissal> readByChildId(long id) {
+        return dismissalDao.readByChildId(id);
     }
 }
