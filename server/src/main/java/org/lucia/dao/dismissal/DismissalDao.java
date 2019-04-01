@@ -42,7 +42,7 @@ public class DismissalDao {
     }
 
     public List<Dismissal> readByChildId(long id) {
-        String sql = String.format("select * from dismissal where child_id = %s");
+        String sql = String.format("select * from dismissal where child_id = %s", id);
         return jdbc.query(sql, new BeanPropertyRowMapper<>(Dismissal.class));
     }
 }

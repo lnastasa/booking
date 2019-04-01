@@ -32,4 +32,11 @@ public class GuardiansResource {
     public List<Guardian> readByChildId(@RequestParam("childId") int childId) {
         return guardiansService.readByChildId(childId);
     }
+
+    @RequestMapping(value = "/guardians/{id}", method = GET)
+    @ResponseStatus(value = OK)
+    @ResponseBody
+    public Guardian readById(@PathVariable("id") long id) {
+        return guardiansService.readById(id);
+    }
 }
