@@ -41,4 +41,8 @@ public class ClassesService {
     public List<Clazz> readByTeacherId(int teacherId) {
         return classesDao.readByTeacherId(teacherId);
     }
+
+    public List<Child> readUnassignedChildrenById(long id) {
+        return classesDao.readUnassignedChildrenById(id);
+    }
 }

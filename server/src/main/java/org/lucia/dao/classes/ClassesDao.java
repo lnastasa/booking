@@ -65,4 +65,9 @@ public class ClassesDao {
         String sql = String.format("select * from classes where teacher_id = %s", teacherId);
         return jdbc.query(sql, new BeanPropertyRowMapper<>(Clazz.class));
     }
+
+    public List<Child> readUnassignedChildrenById(long id) {
+        String sql = String.format("select * from childs where id not in(select child_id from child_class where class_id=%s)", id);
+        return jdbc.query(sql, new BeanPropertyRowMapper<>(Child.class));
+    }
 }

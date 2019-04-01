@@ -17,6 +17,7 @@ import TeacherInfo from './teacher/TeacherInfo'
 import ParentInfo from './parent/ParentInfo'
 import ChildInfo from './child/ChildInfo'
 import ClassInfo from './classes/ClassInfo'
+import ClassAddChild from './classes/ClassAddChild';
 
 import TakeAttendance from './classes/TakeAttendance';
 import DismissClass from './classes/DismissClass';
@@ -47,6 +48,7 @@ const App = () => (
                 <Route exact path="/parent/:id" component={ParentInfo} />
                 <Route exact path="/child/:id" component={ChildInfo} />
                 <Route exact path="/class/:id" component={ClassInfo} />
+                <Route exact path="/class/addChild/:id" component={ClassAddChild} />
 
                 <Route exact path="/register/:id" component={CompleteRegistration} />
                 <Route exact path="/attendance/:id" component={TakeAttendance} />

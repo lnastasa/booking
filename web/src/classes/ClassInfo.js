@@ -83,6 +83,10 @@ export default class ClassInfo extends Component {
                                 <Link class="btn btn-info" to={{
                                     pathname:'/dismiss/' + this.state.class.id
                                 }}>Dismiss</Link>
+
+                                <Link class="btn btn-info" to={{
+                                    pathname:'/class/addChild/' + this.state.class.id
+                                }}>Add Child</Link>
                             </div>
 
                             <div class="row col-12 top-spacer-10">

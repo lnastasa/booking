@@ -55,4 +55,11 @@ public class ClassesResource {
         return classesService.readByTeacherId(teacherId);
     }
 
+    @RequestMapping(value = "/classes/{id}/unassigned", method = GET)
+    @ResponseStatus(value = OK)
+    @ResponseBody
+    public List<Child> readUnassignedChildrenById(@PathVariable("id") long id) {
+        return classesService.readUnassignedChildrenById(id);
+    }
+
 }
