@@ -144,7 +144,7 @@ export default class DismissClass extends Component {
                         <div class="col-3">
                             <Link class="btn btn-secondary" to={{
                                 pathname:'/class/' + this.props.match.params.id
-                            }}>back</Link>
+                            }}>Cancel</Link>
                         </div>
                     </div>
                 </div>

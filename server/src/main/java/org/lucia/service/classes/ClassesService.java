@@ -45,4 +45,10 @@ public class ClassesService {
     public List<Child> readUnassignedChildrenById(long id) {
         return classesDao.readUnassignedChildrenById(id);
     }
+
+    public void addChildrenToClass(long classId, List<Long> childIds) {
+        for (long childId : childIds) {
+            classesDao.addChild(classId, childId);
+        }
+    }
 }

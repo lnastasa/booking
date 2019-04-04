@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.http.HttpStatus.ACCEPTED;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 @Controller
 public class ClassesResource {
@@ -62,4 +64,10 @@ public class ClassesResource {
         return classesService.readUnassignedChildrenById(id);
     }
 
+    @RequestMapping(value = "/classes/{id}/addChildren", method = PUT)
+    @ResponseStatus(value = ACCEPTED)
+    @ResponseBody
+    public void addChildrenToClass(@PathVariable("id") long id, @RequestBody List<Long> childIds) {
+        classesService.addChildrenToClass(id, childIds);
+    }
 }

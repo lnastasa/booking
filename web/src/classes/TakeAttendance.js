@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import renderLoadWait from '../common/loadUtil';
 import NavBar from '../common/navbar'
+import {Link} from 'react-router-dom';
 
 export default class TakeAttendance extends Component {
 
@@ -94,6 +95,9 @@ export default class TakeAttendance extends Component {
                     <button class="btn btn-info" type="button"
                         onClick={() => this.submitAttendance()}
                     >Submit</button>
+                    <Link class="btn btn-secondary" to={{
+                        pathname:'/class/' + this.props.match.params.id
+                    }}>Cancel</Link>
                 </div>
             </div>
         )
