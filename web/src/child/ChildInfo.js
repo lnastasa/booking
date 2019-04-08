@@ -55,7 +55,7 @@ export default class ChildInfo extends Component {
                     	<div class="row col-12">
                             <div class="row col-12">
                                 {
-                                    this.state.user.type === 'ADMINISTRATOR' ?
+                                    this.state.user.type === 'ADMINISTRATOR' || this.state.user.type === 'PARENT' ?
                                         <Link class="btn btn-info"
                                               to={{pathname:'/createGuardian',
                                                   state : { child: this.state.child }
