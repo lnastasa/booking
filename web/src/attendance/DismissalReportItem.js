@@ -36,7 +36,7 @@ export default class DismissalReportItem extends Component {
     render() {
         return (
             <div class="row col-12">
-                <span class="col-4">{moment.unix(this.props.item.timestamp).format('DD/MM/YYYY')}</span>
+                <span class="col-4">{moment.unix(this.props.item.timestamp / 1000).format('DD/MM/YYYY')}</span>
                 <span class="col-4">{this.state.userName}</span>
                 <span class="col-4">
                 {

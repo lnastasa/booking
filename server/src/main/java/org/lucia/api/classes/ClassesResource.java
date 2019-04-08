@@ -9,12 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static org.springframework.http.HttpStatus.ACCEPTED;
-import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.HttpStatus.OK;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-import static org.springframework.web.bind.annotation.RequestMethod.PUT;
+import static org.springframework.http.HttpStatus.*;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @Controller
 public class ClassesResource {
@@ -69,5 +65,12 @@ public class ClassesResource {
     @ResponseBody
     public void addChildrenToClass(@PathVariable("id") long id, @RequestBody List<Long> childIds) {
         classesService.addChildrenToClass(id, childIds);
+    }
+
+    @RequestMapping(value = "/classes/{id}/removeChildren", method = PUT)
+    @ResponseStatus(value = ACCEPTED)
+    @ResponseBody
+    public void removeChildrenFromClass(@PathVariable("id") long id, @RequestBody List<Long> childIds) {
+        classesService.removeChildrenFromClass(id, childIds);
     }
 }

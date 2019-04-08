@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import { Navigation } from 'react-router'
 
 export default class ChildListItem extends Component {
+
+    mixins: [Navigation];
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            classId : this.props.classId
+        };
+    }
 
     render() {
       return (

@@ -18,6 +18,7 @@ import ParentInfo from './parent/ParentInfo'
 import ChildInfo from './child/ChildInfo'
 import ClassInfo from './classes/ClassInfo'
 import ClassAddChild from './classes/ClassAddChild';
+import ClassRemoveChild from './classes/ClassRemoveChild';
 
 import TakeAttendance from './classes/TakeAttendance';
 import DismissClass from './classes/DismissClass';
@@ -49,6 +50,7 @@ const App = () => (
                 <Route exact path="/child/:id" component={ChildInfo} />
                 <Route exact path="/class/:id" component={ClassInfo} />
                 <Route exact path="/class/addChild/:id" component={ClassAddChild} />
+                <Route exact path="/class/removeChild/:id" component={ClassRemoveChild} />
 
                 <Route exact path="/register/:id" component={CompleteRegistration} />
                 <Route exact path="/attendance/:id" component={TakeAttendance} />

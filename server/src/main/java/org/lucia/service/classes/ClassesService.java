@@ -51,4 +51,10 @@ public class ClassesService {
             classesDao.addChild(classId, childId);
         }
     }
+
+    public void removeChildrenFromClass(long classId, List<Long> childIds) {
+        for (long childId : childIds) {
+            classesDao.deleteFromClass(classId, childId);
+        }
+    }
 }

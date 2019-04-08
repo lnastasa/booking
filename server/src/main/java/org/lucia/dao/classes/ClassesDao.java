@@ -70,4 +70,9 @@ public class ClassesDao {
         String sql = String.format("select * from childs where id not in(select child_id from child_class where class_id=%s)", id);
         return jdbc.query(sql, new BeanPropertyRowMapper<>(Child.class));
     }
+
+    public void deleteFromClass(long classId, long childId) {
+        String sql = String.format("delete from child_class where class_id = %s and child_id = %s", classId, childId);
+        jdbc.execute(sql);
+    }
 }

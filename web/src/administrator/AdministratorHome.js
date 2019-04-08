@@ -68,7 +68,6 @@ export default class AdministratorHome extends Component {
                         <AllClasses />
                     </div>
                 </div>
-
             </div>
         )
     }

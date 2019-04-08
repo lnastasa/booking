@@ -156,7 +156,7 @@ export default class DismissClass extends Component {
                             <div class="modal-content">
                                 <h5>Guardians</h5>
                                 {
-                                    this.state.guardians.length == 0
+                                    this.state.guardians.length === 0
                                         ?
                                             <div>This child does not have any guardians</div>
                                         :

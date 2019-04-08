@@ -26,6 +26,7 @@ export default class TakeAttendance extends Component {
             if (childId === attendanceRecord.childId) {
                 attendanceRecord.present = !attendanceRecord.present;
             }
+            return attendanceRecord;
         })
         this.forceUpdate();
     }

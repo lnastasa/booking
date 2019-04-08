@@ -15,7 +15,9 @@ export default class ChildInfo extends Component {
 
         this.state = {
             childLoaded : false,
-            guardiansLoaded : false
+            guardiansLoaded : false,
+
+            user: window.store.getState().user
         };
     }
 
@@ -52,11 +54,15 @@ export default class ChildInfo extends Component {
                     ?
                     	<div class="row col-12">
                             <div class="row col-12">
-                                <Link class="btn btn-info"
-                                      to={{pathname:'/createGuardian',
-                                    state : { child: this.state.child }
-                                }}>Add Guardian
-                                </Link>
+                                {
+                                    this.state.user.type === 'ADMINISTRATOR' ?
+                                        <Link class="btn btn-info"
+                                              to={{pathname:'/createGuardian',
+                                                  state : { child: this.state.child }
+                                              }}>Add Guardian
+                                        </Link>
+                                        : null
+                                }
                             </div>
 
                     		<div class="row col-12 top-spacer-10">

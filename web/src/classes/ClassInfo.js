@@ -17,7 +17,9 @@ export default class ClassInfo extends Component {
         this.state = {
             classLoaded : false,
             teacherLoaded : false,
-            childrenLoaded : false
+            childrenLoaded : false,
+
+            user: window.store.getState().user
         };
     }
 
@@ -84,9 +86,22 @@ export default class ClassInfo extends Component {
                                     pathname:'/dismiss/' + this.state.class.id
                                 }}>Dismiss</Link>
 
-                                <Link class="btn btn-info" to={{
-                                    pathname:'/class/addChild/' + this.state.class.id
-                                }}>Add Child</Link>
+                                {
+                                    this.state.user.type === 'ADMINISTRATOR' ?
+                                        <Link class="btn btn-info" to={{
+                                            pathname:'/class/addChild/' + this.state.class.id
+                                        }}>Add Child</Link>
+                                    : null
+                                }
+
+                                {
+                                    this.state.user.type === 'ADMINISTRATOR' ?
+                                        <Link class="btn btn-info" to={{
+                                            pathname:'/class/removeChild/' + this.state.class.id
+                                        }}>Remove Child</Link>
+                                        : null
+                                }
+
                             </div>
 
                             <div class="row col-12 top-spacer-10">
@@ -102,7 +117,10 @@ export default class ClassInfo extends Component {
                                 <span class="col-6">{this.state.teacher.firstName} {this.state.teacher.lastName}</span>
                             </div>
 
-                            <ChildList children={this.state.children}/>
+                            <ChildList children={this.state.children}
+                                       renderDeleteButtons={this.state.user.type === 'ADMINISTRATOR'}
+                                       classId={this.state.class.id}
+                            />
 
                             <AttendanceReportList attendanceReports={this.state.attendanceReports}/>
                         </div>
